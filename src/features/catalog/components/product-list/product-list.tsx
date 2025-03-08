@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { Product } from '../../types';
-import { ProductItem } from '../product-item';
+import { ProductItem } from '@/entities';
 
 interface Props {
   items: Product[];
