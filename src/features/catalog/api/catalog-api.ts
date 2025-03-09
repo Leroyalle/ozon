@@ -14,15 +14,3 @@ export const {
   endpoints: { getProducts },
 } = catalogApi;
 export const { useGetProductsQuery } = catalogApi;
-
-// queryFn: async () => {
-//       const { data, error } = await supabase.from('products').select('*, product_item(*)');
-
-//       if (error) {
-//         throw { error };
-//       }
-
-//       return {
-//         data: data || [],
-//       };
-//     },

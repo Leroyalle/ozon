@@ -1,14 +1,13 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { ProductWithItems } from '../../types';
-import { ProductItem } from '@/entities';
+import { Category } from '../../types';
 
 interface Props {
-  items: ProductWithItems[] | undefined;
+  items: Category[] | undefined;
   className?: string;
 }
 
-export const ProductList: FC<Props> = ({ items, className }) => {
+export const Categories: FC<Props> = ({ items, className }) => {
   if (!items) {
     return null;
   }
@@ -16,7 +15,7 @@ export const ProductList: FC<Props> = ({ items, className }) => {
   return (
     <div className={clsx('', className)}>
       {items.map((item) => (
-        <ProductItem key={item.id} item={item} />
+        <button key={item.id}>{item.name}</button>
       ))}
     </div>
   );

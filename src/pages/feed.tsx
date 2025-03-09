@@ -3,7 +3,7 @@ import { Catalog } from '@/features';
 export function Feed() {
   return (
     <main>
-      <Catalog />
+      <Catalog className="mt-6" />
     </main>
   );
 }
