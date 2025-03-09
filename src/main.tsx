@@ -2,12 +2,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { Feed } from '@/pages';
-import { Providers } from '@/shared';
+import { Layout, Providers } from '@/shared';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Providers>
-      <Feed />
+      <Layout>
+        <Feed />
+      </Layout>
     </Providers>
   </StrictMode>,
 );

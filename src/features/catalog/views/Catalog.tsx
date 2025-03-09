@@ -1,13 +1,13 @@
 import type { FC } from 'react';
 import { ProductList } from '../components';
-import { Product } from '../types';
+import { useGetProductsQuery } from '../api';
 
 interface Props {
   className?: string;
 }
 
 export const Catalog: FC<Props> = ({ className }) => {
-  const products: Product[] = [];
+  const { data: products } = useGetProductsQuery();
 
   return (
     <section className={className}>

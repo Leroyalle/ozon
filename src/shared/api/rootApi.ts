@@ -1,9 +1,11 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query';
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import { API_KEY, API_SECRET, API_URL } from '../constants';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL as string,
+  baseUrl: API_URL,
   prepareHeaders: (headers) => {
-    headers.set('Authorization', `${import.meta.env.VITE_GITHUB_TOKEN}`);
+    headers.set('Authorization', API_SECRET);
+    headers.set('apikey', API_KEY);
     return headers;
   },
 });
@@ -16,5 +18,6 @@ export const rootApi = createApi({
   reducerPath: 'rootApi',
   baseQuery: baseQueryWithRetry,
   tagTypes: ['Catalog'],
+  refetchOnMountOrArgChange: true,
   endpoints: () => ({}),
 });

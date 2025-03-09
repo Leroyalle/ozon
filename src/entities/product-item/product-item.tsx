@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { clsx } from 'clsx';
 import { Product } from '../../features/catalog/types';
+import { Card, CardBody, CardFooter } from '@heroui/react';
 
 interface Props {
   item: Product;
@@ -8,5 +8,12 @@ interface Props {
 }
 
 export const ProductItem: FC<Props> = ({ item, className }) => {
-  return <div className={clsx('', className)}>{item.name}</div>;
+  return (
+    <Card className={className} isPressable shadow="sm" onPress={() => console.log('item pressed')}>
+      <CardBody className="overflow-visible p-0"></CardBody>
+      <CardFooter className="text-small justify-between">
+        <b>{item.name}</b>
+      </CardFooter>
+    </Card>
+  );
 };
