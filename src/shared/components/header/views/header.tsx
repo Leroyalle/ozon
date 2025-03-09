@@ -18,7 +18,7 @@ export const Header: FC<Props> = ({ className }) => {
       <NavbarContent as="div" className="items-center" justify="end">
         <Input
           classNames={{
-            base: 'max-w-full sm:max-w-[10rem] h-10',
+            base: 'max-w-full h-10',
             mainWrapper: 'h-full',
             input: 'text-small',
             inputWrapper:
