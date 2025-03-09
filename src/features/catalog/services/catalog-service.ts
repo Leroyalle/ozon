@@ -1,9 +1,15 @@
-import { ApiRoutesEnum, supabase } from '@/shared';
+import { supabase } from '@/shared';
 
 class CatalogService {
-  public async getProducts() {
-    const { data, error } = await supabase.from('products').select('*, product_items(*)');
-    console.log(ApiRoutesEnum.products, 'products');
+  public async getProducts(categoryId: string) {
+    const query = supabase.from('products').select('*, product_items(*)');
+
+    if (categoryId) {
+      query.eq('category', categoryId);
+    }
+
+    const { data, error } = await query;
+
     if (error) {
       throw { error };
     }

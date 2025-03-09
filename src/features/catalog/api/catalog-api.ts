@@ -4,8 +4,8 @@ import { catalogService } from '../services';
 
 export const catalogApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<ProductWithItems[], void>({
-      queryFn: async () => await catalogService.getProducts(),
+    getProducts: build.query<ProductWithItems[], string>({
+      queryFn: async (categoryId) => await catalogService.getProducts(categoryId),
     }),
   }),
 });

@@ -1,16 +1,15 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { Container } from '../container';
 import { Header } from '../header';
+import { Outlet } from 'react-router-dom';
 
-interface Props {
-  children: ReactNode;
-}
-
-export const Layout: FC<Props> = ({ children }) => {
+export const Layout: FC = () => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container>
+        <Outlet />
+      </Container>
     </>
   );
 };

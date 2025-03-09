@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react';
-import { HeroUIProvider } from '@heroui/system';
+import { HeroUIProvider } from '@heroui/react';
 import { Provider } from 'react-redux';
-import { store } from '@/shared';
+import { store } from '@/shared/store/store';
 
 interface Props {
   children: ReactNode;
