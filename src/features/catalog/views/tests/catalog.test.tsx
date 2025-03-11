@@ -39,7 +39,7 @@ describe('Catalog', () => {
     },
   ];
 
-  it('передает категории и продукты в дочерние компоненты', () => {
+  it('должен получить и передать категории и продукты в дочерние компоненты', () => {
     mocks.useGetCategoriesQuery.mockReturnValue({ data: mockCategories });
     mocks.useGetProducts.mockReturnValue({
       data: mockProducts,

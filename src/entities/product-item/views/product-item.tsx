@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { ProductWithItems } from '../../features/catalog/types';
 import { Card, CardBody, CardFooter, Image } from '@heroui/react';
+import { ProductWithItems } from '../types';
 
 interface Props {
   item: ProductWithItems;

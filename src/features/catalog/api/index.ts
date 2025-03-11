@@ -1,1 +1,1 @@
-export * from './catalog-api';
+export * from './categories-api';

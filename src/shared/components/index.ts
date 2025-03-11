@@ -1,3 +1,3 @@
 export * from './providers';
-export * from './header';
+export * from '../../widgets/components/header';
 export * from './layout';

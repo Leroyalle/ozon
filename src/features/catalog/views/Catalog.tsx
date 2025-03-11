@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Categories, ProductList } from '../components';
-import { useGetCategoriesQuery } from '../api/categories-api';
 import { useGetProducts } from '../hooks';
+import { useGetCategoriesQuery } from '../api';
 
 interface Props {
   className?: string;

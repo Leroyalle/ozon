@@ -1,6 +1,6 @@
-import { rootApi } from '../../../shared/api/rootApi';
-import { categoriesService } from '../services';
+import { rootApi } from '@/shared';
 import { Category } from '../types';
+import { categoriesService } from '../services';
 
 export const categoriesApi = rootApi.injectEndpoints({
   endpoints: (build) => ({

@@ -2,10 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Categories } from '../categories';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 
 describe('Categories', () => {
-  it('должен рендерить кнопки если категории переданы', async () => {
+  it('должен рендерить кнопки и выбирать категорию', async () => {
     const mocks = [
       {
         id: '1',

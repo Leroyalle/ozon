@@ -16,7 +16,11 @@ export const Categories: FC<Props> = ({ items, onChange, className }) => {
   return (
     <div className={clsx('flex flex-wrap gap-2', className)}>
       {items.map(({ id, name }) => (
-        <button data-testid="category" key={id} onClick={() => onChange({ category: id })}>
+        <button
+          className="text-xs"
+          data-testid="category"
+          key={id}
+          onClick={() => onChange({ category: id })}>
           {name}
         </button>
       ))}
