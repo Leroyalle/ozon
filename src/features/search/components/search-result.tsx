@@ -3,15 +3,13 @@ import { clsx } from 'clsx';
 import { ProductWithItems } from '@/entities';
 
 interface Props {
-  searchValue: string;
   items: ProductWithItems[] | undefined;
   isFocused: boolean;
   className?: string;
 }
 
-export const SearchResult: FC<Props> = ({ searchValue, items, isFocused, className }) => {
-  if (!searchValue || !isFocused) return;
-  if (!items || items.length === 0) return;
+export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
+  if (!isFocused || !items) return;
 
   return (
     <div
@@ -23,7 +21,15 @@ export const SearchResult: FC<Props> = ({ searchValue, items, isFocused, classNa
         'flex flex-col p-3',
         className,
       )}>
-      {items?.map((item) => item.name)}
+      {items.length === 0 ? (
+        'Ничего не найдено'
+      ) : (
+        <div className="flex flex-col gap-y-1">
+          {items.map((item) => (
+            <span key={item.id}>{item.name}</span>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
