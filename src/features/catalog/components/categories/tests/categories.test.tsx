@@ -25,6 +25,7 @@ describe('Categories', () => {
 
     const buttons = screen.getAllByTestId('category');
     expect(buttons).toHaveLength(2);
+
     const button = screen.getByText('Phones');
     await userEvent.click(button);
 

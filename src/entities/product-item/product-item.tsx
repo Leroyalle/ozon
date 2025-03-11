@@ -9,7 +9,12 @@ interface Props {
 
 export const ProductItem: FC<Props> = ({ item, className }) => {
   return (
-    <Card isPressable shadow="sm" onPress={() => console.log('item pressed')} className={className}>
+    <Card
+      isPressable
+      shadow="sm"
+      onPress={() => console.log('item pressed')}
+      className={className}
+      data-testid="product-item">
       <CardBody className="overflow-visible p-0">
         <Image
           alt={item.name}
