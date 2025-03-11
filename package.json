@@ -17,6 +17,7 @@
     "@heroui/theme": "^2.4.12",
     "@reduxjs/toolkit": "^2.6.1",
     "@supabase/supabase-js": "^2.49.1",
+    "@vitest/expect": "^3.0.8",
     "framer-motion": "^12.4.10",
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",

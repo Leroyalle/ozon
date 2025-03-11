@@ -48,6 +48,6 @@ describe('Catalog', () => {
 
     render(<Catalog />);
 
-    expect(screen.getAllByText('Phones')).toHaveLength(1);
+    expect(screen.getAllByText('Phones')).toHaveLength(2);
   });
 });

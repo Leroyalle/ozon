@@ -7,7 +7,6 @@
       "@/*": ["./src/*"]
     },
     "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "types": ["@testing-library/jest-dom"]
+    "esModuleInterop": true
   }
 }
