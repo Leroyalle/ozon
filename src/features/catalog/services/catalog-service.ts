@@ -1,7 +1,7 @@
 import { supabase } from '@/shared';
 
 class CatalogService {
-  public async getProducts(categoryId: string) {
+  public async getProducts(categoryId: string = '') {
     const query = supabase.from('products').select('*, product_items(*)');
 
     if (categoryId) {
