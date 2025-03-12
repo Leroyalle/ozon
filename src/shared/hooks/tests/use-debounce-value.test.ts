@@ -5,7 +5,6 @@ import { useDebounceValue } from '../use-debounce-value';
 describe('UseSearchProducts', () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    vi.clearAllMocks();
   });
 
   afterEach(() => {
