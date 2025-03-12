@@ -22,7 +22,7 @@ export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
         className,
       )}>
       {items.length === 0 ? (
-        'Ничего не найдено'
+        <p>Ничего не найдено</p>
       ) : (
         <div className="flex flex-col gap-y-1">
           {items.slice(0, 5).map((item) => (

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { SearchResult } from '../search-result';
+import { ProductWithItems } from '@/entities';
 
 describe('SearchResult', () => {
   const items = [
@@ -45,5 +46,14 @@ describe('SearchResult', () => {
     render(<SearchResult isFocused={isFocused} items={items} />);
     const results = screen.queryByTestId('results');
     expect(results).toBeNull();
+  });
+
+  it('должен возвращать заглушку если ничего не найдено', () => {
+    const isFocused = true;
+    const items: ProductWithItems[] = [];
+
+    render(<SearchResult isFocused={isFocused} items={items} />);
+
+    expect(screen.getByText(/ничего не найдено/i)).toBeInTheDocument();
   });
 });

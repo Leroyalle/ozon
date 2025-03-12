@@ -11,6 +11,7 @@ interface Props {
 export const SearchField: FC<Props> = ({ searchValue, setSearchValue, setIsFocused }) => {
   return (
     <Input
+      data-testid="search-field"
       classNames={{
         base: 'max-w-full h-10',
         mainWrapper: 'h-full',
