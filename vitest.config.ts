@@ -1,6 +1,7 @@
 import { mergeConfig } from 'vite';
 import { defineConfig } from 'vitest/config';
 import viteConfig from './vite.config';
+import path from 'path';
 
 export default mergeConfig(
   viteConfig,
@@ -9,6 +10,9 @@ export default mergeConfig(
       environment: 'jsdom',
       setupFiles: './tests/setup.ts',
       globals: true,
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
   }),
 );

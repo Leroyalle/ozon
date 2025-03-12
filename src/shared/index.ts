@@ -1,5 +1,5 @@
 export * from './components';
 export * from './constants';
 export * from './types';
-export * from './api';
+export { supabase } from './api';
 export * from './hooks';

@@ -1,5 +1,5 @@
-import { rootApi } from '@/shared';
 import { productService, ProductSort, ProductWithItems } from '@/entities';
+import { rootApi } from '@/shared/api';
 
 export const productApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
