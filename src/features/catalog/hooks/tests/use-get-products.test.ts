@@ -51,4 +51,13 @@ describe('UseGetProducts', () => {
 
     expect(result.current.data).toEqual(mockProducts);
   });
+
+  it('должен возвращать data undefined', () => {
+    mocks.useSearchParams.mockReturnValue([new URLSearchParams('category=321'), vi.fn()]);
+    mocks.useGetProductsQuery.mockReturnValue({ data: undefined });
+
+    const { result } = renderHook(() => useGetProducts());
+
+    expect(result.current.data).toBeUndefined();
+  });
 });
