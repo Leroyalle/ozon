@@ -25,7 +25,7 @@ export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
         'Ничего не найдено'
       ) : (
         <div className="flex flex-col gap-y-1">
-          {items.map((item) => (
+          {items.slice(0, 5).map((item) => (
             <span key={item.id}>{item.name}</span>
           ))}
         </div>

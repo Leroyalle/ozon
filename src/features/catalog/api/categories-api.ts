@@ -1,4 +1,4 @@
-import { rootApi } from '@/shared';
+import { rootApi } from '../../../shared/api/rootApi';
 import { Category } from '../types';
 import { categoriesService } from '../services';
 
