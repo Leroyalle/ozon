@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from '../layout';
-import { AuthPage, Feed } from '@/pages';
+import { AuthPage, Feed, Profile } from '@/pages';
 
 export const AppRouter: React.FC = () => {
   const router = createBrowserRouter([
@@ -16,6 +16,10 @@ export const AppRouter: React.FC = () => {
         {
           path: '/auth',
           element: <AuthPage />,
+        },
+        {
+          path: '/profile',
+          element: <Profile />,
         },
       ],
     },

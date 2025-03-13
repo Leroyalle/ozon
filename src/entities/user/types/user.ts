@@ -1,6 +1,6 @@
 import { Session } from '@supabase/supabase-js';
 
-export type User = {
+export type TUser = {
   id: string;
   name: string;
   email: string;

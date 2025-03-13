@@ -8,7 +8,9 @@ interface Props {
 }
 
 export const Catalog: FC<Props> = ({ className }) => {
-  const { data: categories } = useGetCategoriesQuery();
+  const { data: categories } = useGetCategoriesQuery(undefined, {
+    refetchOnMountOrArgChange: false,
+  });
   const { data: products, setSearchParams } = useGetProducts();
 
   return (

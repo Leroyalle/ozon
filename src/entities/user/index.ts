@@ -1,3 +1,3 @@
 export * from './api';
+export { type TUser } from './types';
 export * from './views';
-export { type User } from './types';

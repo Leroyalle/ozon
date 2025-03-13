@@ -7,7 +7,7 @@ export const useGetProducts = () => {
   const { data: products } = useGetProductsQuery(
     { categoryId: searchParams.get('category') },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     },
   );
 
