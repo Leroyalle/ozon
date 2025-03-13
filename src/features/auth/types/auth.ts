@@ -1,3 +1,5 @@
+import { Session } from '@supabase/auth-js';
+
 export type User = {
   id: string;
   name: string;
@@ -18,3 +20,5 @@ export type LoginDto =
       session: null;
       messageId?: string | null;
     };
+
+export type SessionDto = { session: Session | null };

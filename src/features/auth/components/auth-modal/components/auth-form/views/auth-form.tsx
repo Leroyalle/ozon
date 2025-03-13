@@ -3,11 +3,13 @@ import { Form, Formik } from 'formik';
 import { EmailField, RememberMeOption } from '../components';
 import { Button, ModalBody, ModalFooter } from '@heroui/react';
 import { authSchema, TAuthSchema } from '../services';
-import { authService } from '@/features/auth/services';
+import { useLoginMutation } from '@/features/auth/api';
 
 export const AuthForm: FC = () => {
+  const [login] = useLoginMutation();
+
   const onSubmit = async (data: TAuthSchema, { resetForm }: { resetForm: () => void }) => {
-    const res = await authService.login(data.email);
+    const res = await login(data.email);
     resetForm();
     console.log(res);
   };

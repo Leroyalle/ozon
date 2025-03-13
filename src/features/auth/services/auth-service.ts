@@ -10,6 +10,15 @@ class AuthService {
 
     return { data };
   }
+  public async getSession() {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error) {
+      throw error;
+    }
+
+    return { data };
+  }
 }
 
 export const authService = new AuthService();
