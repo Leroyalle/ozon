@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'eesti';
-  src: url('./assets/fonts/gt-eesti.otf') format('opentype');
+  src: url('./shared/assets/fonts/gt-eesti.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
