@@ -9,9 +9,8 @@ export const AuthForm: FC = () => {
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: TAuthSchema, { resetForm }: { resetForm: () => void }) => {
-    const res = await login(data.email);
+    await login(data.email);
     resetForm();
-    console.log(res);
   };
 
   return (

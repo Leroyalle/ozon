@@ -9,6 +9,7 @@ interface Props {
 
 export const Auth: FC<Props> = ({ className }) => {
   useCheckAuth();
+
   return (
     <div className={clsx('', className)}>
       <AuthModal />
