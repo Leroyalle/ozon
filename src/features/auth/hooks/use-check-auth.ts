@@ -1,5 +1,5 @@
+import { useGetSessionQuery } from '@/entities';
 import { useEffect } from 'react';
-import { useGetSessionQuery } from '../api';
 import { useNavigate } from 'react-router-dom';
 
 export const useCheckAuth = () => {
