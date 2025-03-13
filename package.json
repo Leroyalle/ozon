@@ -18,12 +18,15 @@
     "@reduxjs/toolkit": "^2.6.1",
     "@supabase/supabase-js": "^2.49.1",
     "@vitest/expect": "^3.0.8",
+    "formik": "^2.4.6",
     "framer-motion": "^12.4.10",
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.3.0"
+    "react-router-dom": "^7.3.0",
+    "supabase": "^2.19.6",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",
