@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Container } from '../container';
-import { Header } from '../../../widgets/header';
 import { Outlet } from 'react-router-dom';
+import { Header } from '@/widgets';
 
 export const Layout: FC = () => {
   return (

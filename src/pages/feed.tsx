@@ -2,7 +2,7 @@ import { Catalog } from '@/features';
 
 export function Feed() {
   return (
-    <main>
+    <main data-testid="feedPage">
       <Catalog className="mt-6" />
     </main>
   );

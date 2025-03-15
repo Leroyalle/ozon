@@ -46,7 +46,7 @@ describe('UseGetProducts', () => {
 
     expect(mocks.useGetProductsQuery).toHaveBeenCalledWith(
       { categoryId: '123' },
-      { refetchOnMountOrArgChange: true },
+      { refetchOnMountOrArgChange: false },
     );
 
     expect(result.current.data).toEqual(mockProducts);

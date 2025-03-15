@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { AppRouter, Providers } from './shared';
+import { AppRouter, Providers } from '@/shared';
 
 const container = document.getElementById('root');
 
