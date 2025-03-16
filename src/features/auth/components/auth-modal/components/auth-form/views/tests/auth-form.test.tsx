@@ -3,8 +3,8 @@ import { screen } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { AuthForm } from '../auth-form';
-import { Modal, ModalContent } from '@heroui/react';
+
+import { AuthFormInModal } from './auth-form-in-modal';
 
 const mocks = vi.hoisted(() => ({
   useLoginMutation: vi.fn(),
@@ -23,17 +23,7 @@ describe('AuthForm', () => {
   });
 
   it('должен отправлять введенные данные при сабмите', async () => {
-    render(
-      <TestProviders
-        component={
-          <Modal isOpen>
-            <ModalContent>
-              <AuthForm />
-            </ModalContent>
-          </Modal>
-        }
-      />,
-    );
+    render(<TestProviders component={<AuthFormInModal />} />);
 
     const emailInput = screen.getByTestId('emailField');
     const submitButton = screen.getByTestId('loginSubmit');
@@ -41,5 +31,14 @@ describe('AuthForm', () => {
     await userEvent.click(submitButton);
 
     expect(loginFunk).toBeCalled();
+  });
+
+  it('НЕ должен отправлять введенные данные при сабмите', async () => {
+    render(<TestProviders component={<AuthFormInModal />} />);
+
+    const submitButton = screen.getByTestId('loginSubmit');
+    await userEvent.click(submitButton);
+
+    expect(loginFunk).not.toBeCalled();
   });
 });
