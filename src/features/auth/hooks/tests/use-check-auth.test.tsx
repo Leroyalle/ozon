@@ -1,28 +1,23 @@
-import { render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { RouterMemory } from '@/shared';
+import { renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { useCheckAuth } from '../use-check-auth';
 
 const mocks = vi.hoisted(() => ({
   useGetSessionQuery: vi.fn(),
-  useGetProductsQuery: vi.fn(),
-  useGetCategoriesQuery: vi.fn(),
-  useLoginMutation: vi.fn(),
+  useNavigate: vi.fn(),
 }));
 
-vi.mock('@/features/auth/api', () => ({
-  useLoginMutation: mocks.useLoginMutation,
-}));
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+
+  return {
+    ...actual,
+    useNavigate: mocks.useNavigate,
+  };
+});
 
 vi.mock('@/entities/user/api', () => ({
   useGetSessionQuery: mocks.useGetSessionQuery,
-}));
-
-vi.mock('@/entities/product-item/api', () => ({
-  useGetProductsQuery: mocks.useGetProductsQuery,
-}));
-
-vi.mock('@/features/catalog/api', () => ({
-  useGetCategoriesQuery: mocks.useGetCategoriesQuery,
 }));
 
 describe('UseCheckAuth', () => {
@@ -35,56 +30,33 @@ describe('UseCheckAuth', () => {
       },
     },
   };
+
   const sessionFalse = {
-    data: {},
+    data: null,
   };
 
-  const mockProducts = [
-    {
-      id: '1',
-      name: 'Phones',
-      product_items: [
-        {
-          id: '1',
-          image: 'path',
-          price: 123,
-          created_at: '2023-03-09T23:55:09.749Z',
-          productId: '1',
-        },
-      ],
-      category: '1',
-      created_at: '2023-03-09T23:55:09.749Z',
-    },
-  ];
-
-  const categories = [
-    {
-      id: '1',
-      name: 'Phones',
-      created_at: '2023-03-09T23:55:09.749Z',
-    },
-    {
-      id: '2',
-      name: 'Laptops',
-      created_at: '2023-03-09T23:55:09.749Z',
-    },
-  ];
+  let mockNavigate: Mock;
 
   beforeEach(() => {
-    mocks.useGetProductsQuery.mockReturnValue({ data: mockProducts });
-    mocks.useGetCategoriesQuery.mockReturnValue({ data: categories });
-    mocks.useLoginMutation.mockReturnValue([undefined]);
+    mockNavigate = vi.fn();
+    mocks.useNavigate.mockReturnValue(mockNavigate);
   });
 
-  it('должен редиректить при пустой сессии', () => {
+  it('должен редиректить при пустой сессии', async () => {
     mocks.useGetSessionQuery.mockReturnValue(sessionTrue);
-    render(<RouterMemory initialRoute="/auth" />);
-    expect(screen.getByTestId('feedPage')).toBeInTheDocument();
+
+    renderHook(() => useCheckAuth());
+    await waitFor(() => {
+      expect(mockNavigate).toBeCalledWith('/');
+    });
   });
 
-  it('не должен редиректить при пустой сессии', () => {
+  it('не должен вызываться если сессия есть', async () => {
     mocks.useGetSessionQuery.mockReturnValue(sessionFalse);
-    render(<RouterMemory initialRoute="/auth" />);
-    expect(screen.getByTestId('authPage')).toBeInTheDocument();
+
+    renderHook(() => useCheckAuth());
+    await waitFor(() => {
+      expect(mockNavigate).not.toBeCalled();
+    });
   });
 });

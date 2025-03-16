@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 export const useCheckAuth = () => {
   const router = useNavigate();
-  const session = useGetSessionQuery();
+  const { data } = useGetSessionQuery();
   useEffect(() => {
-    if (session.data?.session) {
+    if (data?.session) {
+      console.log('ROUTER On');
       router('/');
     }
-  });
+  }, [data]);
 };
