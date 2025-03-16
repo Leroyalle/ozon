@@ -3,7 +3,6 @@ import { screen } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-
 import { AuthFormInModal } from './auth-form-in-modal';
 
 const mocks = vi.hoisted(() => ({
