@@ -27,6 +27,7 @@ describe('AuthService', () => {
 
   it('должен возвращать объект ошибки при ошибке', async () => {
     mocks.signInWithOtp.mockRejectedValue(mockError);
+
     try {
       await authService.login('leroy@example.com');
     } catch (error) {
