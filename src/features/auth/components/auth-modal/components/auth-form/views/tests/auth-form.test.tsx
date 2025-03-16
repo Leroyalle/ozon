@@ -22,7 +22,7 @@ describe('AuthForm', () => {
     mocks.useLoginMutation.mockReturnValue([loginFunk]);
   });
 
-  it('должен отправлять введенные данные при сабмите', async () => {
+  it('должен отправлять введенные данные при сабмите и очищать форму', async () => {
     render(<TestProviders component={<AuthFormInModal />} />);
 
     const emailInput = screen.getByTestId('emailField');
@@ -30,7 +30,8 @@ describe('AuthForm', () => {
     await userEvent.type(emailInput, 'leroyalle@example.ru');
     await userEvent.click(submitButton);
 
-    expect(loginFunk).toBeCalled();
+    expect(loginFunk).toBeCalledWith('leroyalle@example.ru');
+    expect(screen.getByTestId('emailField')).toHaveValue('');
   });
 
   it('НЕ должен отправлять введенные данные при сабмите', async () => {
