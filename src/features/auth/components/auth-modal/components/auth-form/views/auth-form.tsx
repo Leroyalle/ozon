@@ -16,9 +16,10 @@ export const AuthForm: FC = () => {
   return (
     <Formik initialValues={{ email: '' }} onSubmit={onSubmit} validationSchema={authSchema}>
       {({ values, errors, handleChange, handleBlur, isSubmitting }) => (
-        <Form>
+        <Form data-testid="authForm">
           <ModalBody>
             <EmailField
+              data-testid="emailField"
               type="email"
               name="email"
               onChange={handleChange}
@@ -30,7 +31,11 @@ export const AuthForm: FC = () => {
             <RememberMeOption />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" type="submit" isLoading={isSubmitting}>
+            <Button
+              data-testid="loginSubmit"
+              color="primary"
+              type="submit"
+              isLoading={isSubmitting}>
               Отправить
             </Button>
           </ModalFooter>

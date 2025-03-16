@@ -11,16 +11,12 @@ export const AuthModal: FC<Props> = ({ className }) => {
     <Modal
       data-testid="authModal"
       className={className}
-      isOpen={true}
+      isOpen
       placement="top-center"
       hideCloseButton>
       <ModalContent>
-        {() => (
-          <>
-            <ModalHeader className="flex flex-col gap-1">Вход</ModalHeader>
-            <AuthForm />
-          </>
-        )}
+        <ModalHeader className="flex flex-col gap-1">Вход</ModalHeader>
+        <AuthForm />
       </ModalContent>
     </Modal>
   );
