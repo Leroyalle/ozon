@@ -34,6 +34,7 @@ describe('ProductService', () => {
     const result = await productService.getProducts({});
     expect(result).toEqual(mockData);
     expect(mocks.from).toHaveBeenCalledWith('products');
+    expect(mocks.from().select).toHaveBeenCalledWith('*, product_items(*)');
   });
 
   it('должен применяться фильтр по категории', async () => {

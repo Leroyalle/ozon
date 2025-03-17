@@ -6,7 +6,6 @@ class ProductService {
     const query = supabase.from('products').select('*, product_items(*)');
 
     if (categoryId) {
-      console.log('Calling eq with category:', categoryId);
       query.eq('category', categoryId);
     }
 

@@ -9,5 +9,9 @@ interface Props {
 export const User: FC<Props> = ({ className }) => {
   const { data } = useGetSessionQuery();
 
-  return <div className={clsx('', className)}>{data?.session?.user.email}</div>;
+  return (
+    <div data-testid="user" className={clsx('', className)}>
+      {data?.session?.user.email}
+    </div>
+  );
 };
