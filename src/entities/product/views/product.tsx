@@ -1,22 +1,29 @@
 import type { FC } from 'react';
 import { Actions, MediaGallery, ProductInfo } from '../components';
-import { ProductWithItems } from '@/entities';
 import { clsx } from 'clsx';
+import { ProductWithRelations } from '../types';
 
 interface Props {
-  item: ProductWithItems | undefined;
+  item: ProductWithRelations | undefined;
   className?: string;
 }
 
 export const Product: FC<Props> = ({ item, className }) => {
   if (!item) return null;
 
+  const hasItems = item.product_items[0].cart_items.length > 0;
+
   return (
     <div className={clsx('', className)}>
       <div className="flex gap-x-3">
         <MediaGallery items={item.product_items} />
         <ProductInfo item={item} />
-        <Actions productId={item.product_items[0].id} />
+        <Actions
+          productId={item.product_items[0].id}
+          cartItemId={hasItems ? item.product_items[0].cart_items[0].id : ''}
+          isAddedToCart={hasItems && hasItems}
+          quantity={hasItems ? item.product_items[0].cart_items[0].quantity : 1}
+        />
       </div>
     </div>
   );

@@ -12,18 +12,24 @@ export type Database = {
       cart_items: {
         Row: {
           created_at: string
-          id: number
+          id: string
           product_item_id: string
+          quantity: number
+          user_id: string
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: string
           product_item_id: string
+          quantity?: number
+          user_id?: string
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: string
           product_item_id?: string
+          quantity?: number
+          user_id?: string
         }
         Relationships: [
           {
@@ -31,6 +37,13 @@ export type Database = {
             columns: ["product_item_id"]
             isOneToOne: false
             referencedRelation: "product_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cart_items_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
