@@ -1,1 +1,1 @@
-export * from './product-api';
+export * from './product-item-api';

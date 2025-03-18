@@ -1,7 +1,7 @@
 import { supabase } from '@/shared';
 import { ProductSort } from '../types';
 
-class ProductService {
+class ProductItemService {
   public async getProducts({ categoryId, name }: ProductSort) {
     const query = supabase.from('products').select('*, product_items(*)');
 
@@ -23,4 +23,4 @@ class ProductService {
   }
 }
 
-export const productService = new ProductService();
+export const productItemService = new ProductItemService();

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Catalog } from '../catalog';
 import { describe, expect, it, vi } from 'vitest';
+import { TestProviders } from '@/shared';
 
 const mocks = vi.hoisted(() => ({
   useGetCategoriesQuery: vi.fn(),
@@ -46,7 +47,7 @@ describe('Catalog', () => {
       setSearchParams: vi.fn(),
     });
 
-    render(<Catalog />);
+    render(<TestProviders component={<Catalog />} />);
 
     expect(screen.getAllByText('Phones')).toHaveLength(2);
   });

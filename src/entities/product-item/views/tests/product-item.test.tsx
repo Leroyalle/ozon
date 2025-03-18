@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { ProductItem } from '../product-item';
+import { TestProviders } from '@/shared';
 
 describe('ProductItem', () => {
   it('должен корректно отображать данные', () => {
@@ -19,7 +20,7 @@ describe('ProductItem', () => {
       category: '1',
       created_at: '2023-03-09T23:55:09.749Z',
     };
-    render(<ProductItem item={mocks} />);
+    render(<TestProviders component={<ProductItem item={mocks} />} />);
 
     expect(screen.getByText(mocks.name)).toBeInTheDocument();
     expect(screen.getByText(`${mocks.product_items[0].price}`)).toBeInTheDocument();

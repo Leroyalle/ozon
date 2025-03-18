@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Logo, UserProfileButton } from '../components';
+import { CartButton, Logo, UserProfileButton } from '../components';
 import { Navbar, NavbarBrand, NavbarContent } from '@heroui/react';
 import { Search } from '@/features';
 interface Props {
@@ -17,6 +17,7 @@ export const Header: FC<Props> = ({ className }) => {
       <NavbarContent as="div" className="items-center" justify="end">
         <Search />
         <UserProfileButton />
+        <CartButton />
       </NavbarContent>
     </Navbar>
   );

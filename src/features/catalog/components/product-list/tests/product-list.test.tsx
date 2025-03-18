@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { ProductList } from '../product-list';
+import { TestProviders } from '@/shared';
 
 describe('ProductList', () => {
   it('должен рендерить карточки', () => {
@@ -37,7 +38,7 @@ describe('ProductList', () => {
       },
     ];
 
-    render(<ProductList items={mockProducts} />);
+    render(<TestProviders component={<ProductList items={mockProducts} />} />);
 
     const cards = screen.getAllByTestId('product-item');
     expect(cards).length(2);

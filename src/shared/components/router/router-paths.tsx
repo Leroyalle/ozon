@@ -1,4 +1,4 @@
-import { AuthPage, Feed, Profile } from '@/pages';
+import { AuthPage, Cart, Feed, ProductPage, Profile } from '@/pages';
 import { Layout } from '@/shared';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -18,6 +18,14 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage />,
       },
     ],
   },
