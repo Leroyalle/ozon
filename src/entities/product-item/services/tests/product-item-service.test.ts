@@ -15,7 +15,7 @@ vi.mock('@/shared/api/supabase-client', () => ({
   },
 }));
 
-describe('ProductService', () => {
+describe('ProductItemService', () => {
   let mockEq: Mock;
 
   beforeEach(() => {

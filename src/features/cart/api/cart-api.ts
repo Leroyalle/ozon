@@ -18,6 +18,7 @@ export const cartApi = rootApi.injectEndpoints({
       queryFn: async (params) => await cartService.incrementQuantity(params),
       invalidatesTags: ['Cart', 'Product'],
     }),
+
     decrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({
       queryFn: async (params) => await cartService.decrementQuantity(params),
       invalidatesTags: ['Cart', 'Product'],

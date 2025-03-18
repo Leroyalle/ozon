@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { Button } from '@heroui/button';
+import { AddToCartButton, CartItemHandlers } from '../components';
 import {
   useAddToCartMutation,
   useDecrementCartItemQuantityMutation,
@@ -16,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-export const Actions: FC<Props> = ({
+export const CartControls: FC<Props> = ({
   productId,
   cartItemId,
   isAddedToCart,
@@ -28,34 +28,26 @@ export const Actions: FC<Props> = ({
   const [increment, { isLoading: isLoadingIncrement }] = useIncrementCartItemQuantityMutation();
   const [decrement, { isLoading: isLoadingDecrement }] = useDecrementCartItemQuantityMutation();
 
-  const onClickDecrement = () => {
+  const onClickDecrement = ({ id, quantity }: { id: string; quantity: number }) => {
     if (quantity <= 1) return;
-    decrement({ id: cartItemId, quantity });
+    decrement({ id, quantity });
   };
 
   return (
     <div className={clsx('', className)}>
       {!isAddedToCart ? (
-        <Button
-          onPress={() => addToCart({ product_item_id: productId, quantity: 1 })}
-          isLoading={isLoadingAdd}>
-          Добавить в корзину
-        </Button>
+        <AddToCartButton productId={productId} addToCart={addToCart} isLoadingAdd={isLoadingAdd} />
       ) : (
-        <div className="flex items-center gap-x-3 select-none">
-          <Button onPress={onClickDecrement} isLoading={isLoadingDecrement}>
-            -
-          </Button>
-          <p className="select-none">{quantity}</p>
-          <Button
-            onPress={() => increment({ id: cartItemId, quantity })}
-            isLoading={isLoadingIncrement}>
-            +
-          </Button>
-          <Button onPress={() => removeFromCart(cartItemId)} isLoading={isLoadingRemove}>
-            Удалить
-          </Button>
-        </div>
+        <CartItemHandlers
+          cartItemId={cartItemId}
+          quantity={quantity}
+          removeFromCart={removeFromCart}
+          increment={increment}
+          decrement={onClickDecrement}
+          isLoadingRemove={isLoadingRemove}
+          isLoadingIncrement={isLoadingIncrement}
+          isLoadingDecrement={isLoadingDecrement}
+        />
       )}
     </div>
   );

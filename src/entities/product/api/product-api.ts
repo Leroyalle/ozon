@@ -7,7 +7,6 @@ export const productApi = rootApi.injectEndpoints({
     getProduct: build.query<ProductWithRelations | undefined, GetProductParams>({
       queryFn: async (params) => {
         if (!params.id || !params.user_id) return { data: undefined };
-
         return await productService.getById(params.id, params.user_id);
       },
       providesTags: ['Product'],

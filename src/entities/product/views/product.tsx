@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Actions, MediaGallery, ProductInfo } from '../components';
+import { CartControls, MediaGallery, ProductInfo } from '../components';
 import { clsx } from 'clsx';
 import { ProductWithRelations } from '../types';
 
@@ -18,7 +18,7 @@ export const Product: FC<Props> = ({ item, className }) => {
       <div className="flex gap-x-3">
         <MediaGallery items={item.product_items} />
         <ProductInfo item={item} />
-        <Actions
+        <CartControls
           productId={item.product_items[0].id}
           cartItemId={hasItems ? item.product_items[0].cart_items[0].id : ''}
           isAddedToCart={hasItems && hasItems}
