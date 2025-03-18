@@ -9,7 +9,7 @@ interface Props {
 
 export const MediaGallery: FC<Props> = ({ items, className }) => {
   return (
-    <div className={clsx('max-w-[300px]', className)}>
+    <div className={clsx('max-w-[300px]', className)} data-testid="mediaGallery">
       <img className="w-full h-full" src={items[0].image} alt="" />
     </div>
   );

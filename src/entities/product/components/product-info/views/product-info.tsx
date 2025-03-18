@@ -8,5 +8,9 @@ interface Props {
 }
 
 export const ProductInfo: FC<Props> = ({ item, className }) => {
-  return <div className={clsx('', className)}>{item.name}</div>;
+  return (
+    <div className={clsx('', className)} data-testid="productInfo">
+      {item.name}
+    </div>
+  );
 };

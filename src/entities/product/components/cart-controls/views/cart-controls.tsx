@@ -34,7 +34,7 @@ export const CartControls: FC<Props> = ({
   };
 
   return (
-    <div className={clsx('', className)}>
+    <div className={clsx('', className)} data-testid="cartControls">
       {!isAddedToCart ? (
         <AddToCartButton productId={productId} addToCart={addToCart} isLoadingAdd={isLoadingAdd} />
       ) : (
