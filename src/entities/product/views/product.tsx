@@ -14,7 +14,7 @@ export const Product: FC<Props> = ({ item, className }) => {
   const hasItems = item.product_items[0].cart_items.length > 0;
 
   return (
-    <div className={clsx('', className)}>
+    <div className={clsx('', className)} data-testid="product">
       <div className="flex gap-x-3">
         <MediaGallery items={item.product_items} />
         <ProductInfo item={item} />
