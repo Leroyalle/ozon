@@ -35,6 +35,7 @@ class CartService {
 
     return { data };
   }
+
   public async decrementQuantity({ id, quantity }: QuantityChangeParams) {
     const { data, error } = await supabase
       .from('cart_items')
