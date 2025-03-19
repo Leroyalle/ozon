@@ -9,11 +9,16 @@ interface Props {
 }
 
 export const AddToCartButton: FC<Props> = ({ productId, addToCart, isLoadingAdd, className }) => {
+  console.log('IS LOADING', isLoadingAdd);
+
+  console.log('PRODUCT ID', productId);
   return (
     <Button
+      data-testid="addToCartButton"
       className={className}
+      disabled={isLoadingAdd}
       onPress={() => addToCart({ product_item_id: productId, quantity: 1 })}
-      isLoading={isLoadingAdd}>
+      isDisabled={isLoadingAdd}>
       Добавить в корзину
     </Button>
   );

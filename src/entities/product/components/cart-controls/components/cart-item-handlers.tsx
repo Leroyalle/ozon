@@ -26,19 +26,26 @@ export const CartItemHandlers: FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={clsx('flex items-center gap-x-3 select-none', className)}>
+    <div
+      className={clsx('flex items-center gap-x-3 select-none', className)}
+      data-testid="cartItemHandlers">
       <Button
+        data-testid="decrementButton"
         onPress={() => decrement({ id: cartItemId, quantity })}
         isLoading={isLoadingDecrement}>
         -
       </Button>
       <p className="select-none">{quantity}</p>
       <Button
+        data-testid="incrementButton"
         onPress={() => increment({ id: cartItemId, quantity })}
         isLoading={isLoadingIncrement}>
         +
       </Button>
-      <Button onPress={() => removeFromCart(cartItemId)} isLoading={isLoadingRemove}>
+      <Button
+        data-testid="removeFromCartButton"
+        onPress={() => removeFromCart(cartItemId)}
+        isLoading={isLoadingRemove}>
         Удалить
       </Button>
     </div>
