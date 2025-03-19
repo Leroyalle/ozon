@@ -9,9 +9,6 @@ interface Props {
 }
 
 export const AddToCartButton: FC<Props> = ({ productId, addToCart, isLoadingAdd, className }) => {
-  console.log('IS LOADING', isLoadingAdd);
-
-  console.log('PRODUCT ID', productId);
   return (
     <Button
       data-testid="addToCartButton"
