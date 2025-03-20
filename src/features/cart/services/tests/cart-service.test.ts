@@ -115,4 +115,22 @@ describe('CartService', () => {
       expect(mocks.from).rejects.toThrow();
     }
   });
+
+  it('getCartItems получает и возвращает данные', async () => {
+    mocks.from.mockReturnValue(createMockChain(mockCartItems));
+    const result = await cartService.getCartItems();
+    expect(mocks.from).toHaveBeenCalledWith('cart_items');
+    expect(mocks.from().select).toHaveBeenCalled();
+    expect(result).toEqual({ data: mockCartItems });
+  });
+
+  it('getCartItems выбрасывает ошибку', async () => {
+    mocks.from.mockReturnValue(createMockChain(mockError));
+    try {
+      await cartService.getCartItems();
+    } catch (error) {
+      expect(mocks.from).rejects.toThrow();
+      expect(error).toEqual(mockError);
+    }
+  });
 });
