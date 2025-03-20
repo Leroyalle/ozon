@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { Button } from '@heroui/button';
-import { CartQuantityControl, RemoveFromCartButton } from '@/shared';
+import { CartItemControls, CartItemDetails, CartItemImage } from '../components';
 import {
   useDecrementCartItemQuantityMutation,
   useIncrementCartItemQuantityMutation,
@@ -25,34 +24,23 @@ export const CartItem: FC<Props> = ({ id, name, price, image, quantity, classNam
   return (
     <div className={clsx('grid grid-cols-2 gap-x-4', className)}>
       <div className="flex gap-x-4">
-        <div className="max-w-[100px]">
-          <img src={image} alt="" className="w-full" />
-        </div>
-        <div className="flex flex-col gap-y-2">
-          <div>{name}</div>
-          <div className="flex items-center gap-x-2">
-            <RemoveFromCartButton
-              cartItemId={id}
-              removeFromCart={removeFromCart}
-              isLoadingRemove={isLoadingRemove}
-            />
-            <Button size="sm">Купить</Button>
-          </div>
-        </div>
+        <CartItemImage image={image} />
+        <CartItemDetails
+          id={id}
+          name={name}
+          removeFromCart={removeFromCart}
+          isLoadingRemove={isLoadingRemove}
+        />
       </div>
-      <div className="flex justify-between">
-        <div>{price} &#8381;</div>
-        <div>
-          <CartQuantityControl
-            cartItemId={id}
-            quantity={quantity}
-            increment={increment}
-            decrement={decrement}
-            isLoadingIncrement={isLoadingIncrement}
-            isLoadingDecrement={isLoadingDecrement}
-          />
-        </div>
-      </div>
+      <CartItemControls
+        id={id}
+        price={price}
+        quantity={quantity}
+        increment={increment}
+        decrement={decrement}
+        isLoadingIncrement={isLoadingIncrement}
+        isLoadingDecrement={isLoadingDecrement}
+      />
     </div>
   );
 };
