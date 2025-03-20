@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { useGetCartItemsQuery } from '../api';
+import { CartBody, CartHeader } from '../components';
 
 interface Props {
   className?: string;
@@ -8,6 +9,15 @@ interface Props {
 
 export const Cart: FC<Props> = ({ className }) => {
   const { data: cartItems } = useGetCartItemsQuery();
-  console.log(cartItems);
-  return <div className={clsx('', className)}>Cart</div>;
+
+  if (!cartItems) {
+    return null;
+  }
+
+  return (
+    <div className={clsx('', className)}>
+      <CartHeader className="my-8" length={cartItems.length} />
+      <CartBody />
+    </div>
+  );
 };
