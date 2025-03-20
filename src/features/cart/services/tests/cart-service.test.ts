@@ -67,7 +67,7 @@ describe('CartService', () => {
 
   it('incrementQuantity вызывается и увеличивает quantity', async () => {
     mocks.from.mockReturnValue(createMockChain(mockCartItems[0]));
-    await cartService.incrementQuantity({ id: '1', quantity: 1 });
+    await cartService.incrementQuantity({ cart_item_id: '1', quantity: 1 });
     expect(mocks.from).toHaveBeenCalledWith('cart_items');
     expect(mocks.from().update).toHaveBeenCalledWith({
       quantity: 2,
@@ -79,7 +79,7 @@ describe('CartService', () => {
   it('incrementQuantity пробрасывает ошибку', async () => {
     mocks.from.mockReturnValue(createMockChain(mockError));
     try {
-      await cartService.incrementQuantity({ id: '1', quantity: 1 });
+      await cartService.incrementQuantity({ cart_item_id: '1', quantity: 1 });
     } catch (error) {
       expect(error).toEqual(mockError);
       expect(mocks.from).rejects.toThrow();
@@ -88,7 +88,7 @@ describe('CartService', () => {
 
   it('decrementQuantity вызывается с минимальным количеством 1', async () => {
     mocks.from.mockReturnValue(createMockChain(mockCartItems[0]));
-    await cartService.decrementQuantity({ id: '1', quantity: 1 });
+    await cartService.decrementQuantity({ cart_item_id: '1', quantity: 1 });
     expect(mocks.from).toHaveBeenCalledWith('cart_items');
     expect(mocks.from().update).toHaveBeenCalledWith({
       quantity: 1,
@@ -99,7 +99,7 @@ describe('CartService', () => {
 
   it('decrementQuantity вызывается с минимальным количеством 1', async () => {
     mocks.from.mockReturnValue(createMockChain(mockCartItems[0]));
-    await cartService.decrementQuantity({ id: '1', quantity: 2 });
+    await cartService.decrementQuantity({ cart_item_id: '1', quantity: 2 });
     expect(mocks.from).toHaveBeenCalledWith('cart_items');
     expect(mocks.from().update).toHaveBeenCalledWith({
       quantity: 1,
@@ -111,7 +111,7 @@ describe('CartService', () => {
   it('decrementQuantity пробрасывает ошибку', async () => {
     mocks.from.mockReturnValue(createMockChain(mockError));
     try {
-      await cartService.decrementQuantity({ id: '1', quantity: 1 });
+      await cartService.decrementQuantity({ cart_item_id: '1', quantity: 1 });
     } catch (error) {
       expect(error).toEqual(mockError);
       expect(mocks.from).rejects.toThrow();
@@ -139,7 +139,10 @@ describe('CartService', () => {
 
   it('toggleCartItemSelection вызывается с id и возвращает данные', async () => {
     mocks.from.mockReturnValue(createMockChain(mockCartItems));
-    const result = await cartService.toggleCartItemSelection({ isSelected: true, id: '123' });
+    const result = await cartService.toggleCartItemSelection({
+      isSelected: true,
+      cart_item_id: '123',
+    });
     expect(mocks.from).toHaveBeenCalledWith('cart_items');
     expect(mocks.from().eq).toHaveBeenCalledWith('id', '123');
     expect(mocks.from().not).not.toHaveBeenCalled();

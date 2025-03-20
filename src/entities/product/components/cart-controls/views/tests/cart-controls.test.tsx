@@ -92,7 +92,7 @@ describe('CartControls', () => {
 
     const button = screen.getByTestId('removeFromCartButton');
     await userEvent.click(button);
-    expect(removeFromCart).toHaveBeenCalledWith('321');
+    expect(removeFromCart).toHaveBeenCalledWith({ product_item_id: '123', cart_item_id: '321' });
 
     mocks.useRemoveFromCartMutation.mockReturnValue([removeFromCart, { isLoading: true }]);
     rerender(
@@ -113,7 +113,11 @@ describe('CartControls', () => {
 
     const button = screen.getByTestId('incrementButton');
     await userEvent.click(button);
-    expect(increment).toHaveBeenCalledWith({ id: '321', quantity: 1 });
+    expect(increment).toHaveBeenCalledWith({
+      cart_item_id: '321',
+      product_item_id: '123',
+      quantity: 1,
+    });
 
     mocks.useIncrementCartItemQuantityMutation.mockReturnValue([increment, { isLoading: true }]);
     rerender(
@@ -134,7 +138,11 @@ describe('CartControls', () => {
 
     const button = screen.getByTestId('decrementButton');
     await userEvent.click(button);
-    expect(decrement).toHaveBeenCalledWith({ id: '321', quantity: 2 });
+    expect(decrement).toHaveBeenCalledWith({
+      cart_item_id: '321',
+      product_item_id: '123',
+      quantity: 2,
+    });
 
     mocks.useDecrementCartItemQuantityMutation.mockReturnValue([decrement, { isLoading: true }]);
     rerender(

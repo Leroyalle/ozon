@@ -4,38 +4,19 @@ import { CartQuantityControl } from '@/shared';
 import { CartItemPrice } from '../components';
 
 interface Props {
+  productItemId: string;
   price: number;
   id: string;
   quantity: number;
-  decrement: ({ id, quantity }: { id: string; quantity: number }) => void;
-  increment: ({ id, quantity }: { id: string; quantity: number }) => void;
-  isLoadingDecrement: boolean;
-  isLoadingIncrement: boolean;
   className?: string;
 }
 
-export const CartItemControls: FC<Props> = ({
-  price,
-  id,
-  quantity,
-  decrement,
-  increment,
-  isLoadingDecrement,
-  isLoadingIncrement,
-  className,
-}) => {
+export const CartItemControls: FC<Props> = ({ productItemId, price, id, quantity, className }) => {
   return (
     <div className={clsx('flex justify-between', className)}>
       <CartItemPrice price={price} />
       <div>
-        <CartQuantityControl
-          cartItemId={id}
-          quantity={quantity}
-          increment={increment}
-          decrement={decrement}
-          isLoadingIncrement={isLoadingIncrement}
-          isLoadingDecrement={isLoadingDecrement}
-        />
+        <CartQuantityControl productItemId={productItemId} cartItemId={id} quantity={quantity} />
       </div>
     </div>
   );

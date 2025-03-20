@@ -3,45 +3,23 @@ import { clsx } from 'clsx';
 import { CartQuantityControl, RemoveFromCartButton } from '@/shared';
 
 interface Props {
+  productItemId: string;
   cartItemId: string;
   quantity: number;
-  removeFromCart: (id: string) => void;
-  increment: ({ id, quantity }: { id: string; quantity: number }) => void;
-  decrement: ({ id, quantity }: { id: string; quantity: number }) => void;
-  isLoadingRemove: boolean;
-  isLoadingIncrement: boolean;
-  isLoadingDecrement: boolean;
   className?: string;
 }
 
-export const CartItemHandlers: FC<Props> = ({
-  cartItemId,
-  quantity,
-  removeFromCart,
-  increment,
-  decrement,
-  isLoadingRemove,
-  isLoadingIncrement,
-  isLoadingDecrement,
-  className,
-}) => {
+export const CartItemHandlers: FC<Props> = ({ productItemId, cartItemId, quantity, className }) => {
   return (
     <div
       className={clsx('flex items-center gap-x-3 select-none', className)}
       data-testid="cartItemHandlers">
       <CartQuantityControl
+        productItemId={productItemId}
         cartItemId={cartItemId}
         quantity={quantity}
-        increment={increment}
-        decrement={decrement}
-        isLoadingIncrement={isLoadingIncrement}
-        isLoadingDecrement={isLoadingDecrement}
       />
-      <RemoveFromCartButton
-        cartItemId={cartItemId}
-        removeFromCart={removeFromCart}
-        isLoadingRemove={isLoadingRemove}
-      />
+      <RemoveFromCartButton productItemId={productItemId} cartItemId={cartItemId} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Catalog } from '../catalog';
 import { describe, expect, it, vi } from 'vitest';
 import { TestProviders } from '@/shared';
+import { mockCategories, mockProducts } from './mocks';
 
 const mocks = vi.hoisted(() => ({
   useGetCategoriesQuery: vi.fn(),
@@ -17,29 +18,6 @@ vi.mock('../../hooks', () => ({
 }));
 
 describe('Catalog', () => {
-  const mockCategories = [
-    {
-      id: '1',
-      name: 'Phones',
-    },
-    {
-      id: '2',
-      name: 'Laptops',
-    },
-  ];
-  const mockProducts = [
-    {
-      id: '1',
-      name: 'Phones',
-      product_items: ['iPhone', 'Samsung'],
-    },
-    {
-      id: '2',
-      name: 'Laptops',
-      product_items: ['MacBook', 'Dell'],
-    },
-  ];
-
   it('должен получить и передать категории и продукты в дочерние компоненты', () => {
     mocks.useGetCategoriesQuery.mockReturnValue({ data: mockCategories });
     mocks.useGetProducts.mockReturnValue({
@@ -49,6 +27,6 @@ describe('Catalog', () => {
 
     render(<TestProviders component={<Catalog />} />);
 
-    expect(screen.getAllByText('Phones')).toHaveLength(2);
+    expect(screen.getAllByText('Варежки')).toHaveLength(1);
   });
 });

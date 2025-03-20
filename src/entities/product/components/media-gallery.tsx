@@ -1,16 +1,15 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { TProductItem } from '@/entities';
 
 interface Props {
-  items: TProductItem[];
+  image: string;
   className?: string;
 }
 
-export const MediaGallery: FC<Props> = ({ items, className }) => {
+export const MediaGallery: FC<Props> = ({ image, className }) => {
   return (
     <div className={clsx('max-w-[300px]', className)} data-testid="mediaGallery">
-      <img className="w-full h-full" src={items[0].image} alt="" />
+      <img className="w-full h-full" src={image} alt="" />
     </div>
   );
 };

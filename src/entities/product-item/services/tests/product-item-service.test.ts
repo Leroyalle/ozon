@@ -33,19 +33,19 @@ describe('ProductItemService', () => {
   it('должен возвращать данные без передачи доп параметров', async () => {
     const result = await productItemService.getProducts({});
     expect(result).toEqual(mockData);
-    expect(mocks.from).toHaveBeenCalledWith('products');
-    expect(mocks.from().select).toHaveBeenCalledWith('*, product_items!inner(*)');
+    expect(mocks.from).toHaveBeenCalledWith('product_items');
+    expect(mocks.from().select).toHaveBeenCalledWith('*, products!inner(*)');
   });
 
   it('должен применяться фильтр по категории', async () => {
     const result = await productItemService.getProducts({ categoryId: '123' });
     expect(result).toEqual(mockData);
-    expect(mockEq).toBeCalledWith('category', '123');
+    expect(mockEq).toBeCalledWith('products.category', '123');
   });
 
   it('должен применяться фильтр по имени', async () => {
     const result = await productItemService.getProducts({ name: 'IPhone' });
     expect(result).toEqual(mockData);
-    expect(mockEq).toBeCalledWith('name', 'IPhone');
+    expect(mockEq).toBeCalledWith('products.name', 'IPhone');
   });
 });

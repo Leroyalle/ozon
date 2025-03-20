@@ -1,14 +1,14 @@
-import { Product, useGetProductQuery, useGetSessionQuery } from '@/entities';
+import { Product, useGetProductQuery } from '@/entities';
 import { useParams } from 'react-router-dom';
 
 export function ProductPage() {
   const { id } = useParams();
-  const { data: session } = useGetSessionQuery();
-  console.log(id);
+
   const { data, isLoading } = useGetProductQuery(
-    { id, user_id: session?.session?.user.id },
+    { id },
     {
-      skip: !id || !session?.session?.user.id,
+      skip: !id,
+      refetchOnMountOrArgChange: false,
     },
   );
 

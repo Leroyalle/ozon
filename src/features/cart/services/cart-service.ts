@@ -22,11 +22,14 @@ class CartService {
     return { data };
   }
 
-  public async incrementQuantity({ id, quantity }: QuantityChangeParams) {
+  public async incrementQuantity({
+    cart_item_id,
+    quantity,
+  }: Omit<QuantityChangeParams, 'product_item_id'>) {
     const { data, error } = await supabase
       .from('cart_items')
       .update({ quantity: quantity + 1 })
-      .eq('id', id)
+      .eq('id', cart_item_id)
       .select();
 
     if (error) {
@@ -36,11 +39,14 @@ class CartService {
     return { data };
   }
 
-  public async decrementQuantity({ id, quantity }: QuantityChangeParams) {
+  public async decrementQuantity({
+    cart_item_id,
+    quantity,
+  }: Omit<QuantityChangeParams, 'product_item_id'>) {
     const { data, error } = await supabase
       .from('cart_items')
       .update({ quantity: quantity - 1 || 1 })
-      .eq('id', id)
+      .eq('id', cart_item_id)
       .select();
 
     if (error) {
@@ -63,11 +69,11 @@ class CartService {
     return { data };
   }
 
-  public async toggleCartItemSelection({ isSelected, id }: ToggleSelectionParams) {
+  public async toggleCartItemSelection({ isSelected, cart_item_id }: ToggleSelectionParams) {
     const query = supabase.from('cart_items').update({ isSelected });
 
-    if (id) {
-      query.eq('id', id);
+    if (cart_item_id) {
+      query.eq('id', cart_item_id);
     } else {
       query.not('id', 'is', null);
     }

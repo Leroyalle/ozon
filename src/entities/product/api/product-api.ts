@@ -1,15 +1,15 @@
 import { rootApi } from '@/shared/api';
 import { productService } from '../services';
-import { GetProductParams, ProductWithRelations } from '../types';
+import { GetProductParams, ProductItemWithRelations } from '../types';
 
 export const productApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
-    getProduct: build.query<ProductWithRelations | undefined, GetProductParams>({
+    getProduct: build.query<ProductItemWithRelations | undefined, GetProductParams>({
       queryFn: async (params) => {
-        if (!params.id || !params.user_id) return { data: undefined };
-        return await productService.getById(params.id, params.user_id);
+        if (!params.id) return { data: undefined };
+        return await productService.getById(params.id);
       },
-      providesTags: ['Product'],
+      providesTags: (_, __, { id }) => [{ type: 'Product', id }],
       keepUnusedDataFor: 60 * 100,
     }),
   }),

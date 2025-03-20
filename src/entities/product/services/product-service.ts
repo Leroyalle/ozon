@@ -1,12 +1,11 @@
 import { supabase } from '@/shared';
 
 class ProductService {
-  public async getById(id: string, user_id: string) {
+  public async getById(id: string) {
     const { data, error } = await supabase
-      .from('products')
-      .select(`*, product_items (*, cart_items(*))`)
+      .from('product_items')
+      .select('*, products(*), cart_items(*)')
       .eq('id', id)
-      .eq('product_items.cart_items.user_id', user_id)
       .single();
 
     if (error) {

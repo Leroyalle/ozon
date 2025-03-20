@@ -8,7 +8,9 @@ interface Props {
 }
 
 export const Cart: FC<Props> = ({ className }) => {
-  const { data: cartItems } = useGetCartItemsQuery();
+  const { data: cartItems } = useGetCartItemsQuery(undefined, {
+    refetchOnMountOrArgChange: false,
+  });
 
   if (!cartItems) {
     return null;

@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { ProductWithItems } from '@/entities';
+import { ProductItemWithProduct } from '@/entities';
 import { Link } from 'react-router-dom';
 
 interface Props {
-  items: ProductWithItems[] | undefined;
+  items: ProductItemWithProduct[] | undefined;
   isFocused: boolean;
   setIsFocused: (isFocused: boolean) => void;
   className?: string;
@@ -29,7 +29,7 @@ export const SearchResult: FC<Props> = ({ items, isFocused, setIsFocused, classN
         <div className="flex flex-col gap-y-1">
           {items.slice(0, 5).map((item) => (
             <Link to={`/product/${item.id}`} key={item.id} onClick={() => setIsFocused(false)}>
-              {item.name}
+              {item.products.name}
             </Link>
           ))}
         </div>

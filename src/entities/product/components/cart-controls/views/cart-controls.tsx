@@ -1,12 +1,6 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { AddToCartButton, CartItemHandlers } from '../components';
-import {
-  useAddToCartMutation,
-  useDecrementCartItemQuantityMutation,
-  useIncrementCartItemQuantityMutation,
-  useRemoveFromCartMutation,
-} from '@/features';
 
 interface Props {
   productId: string;
@@ -23,31 +17,23 @@ export const CartControls: FC<Props> = ({
   quantity,
   className,
 }) => {
-  const [addToCart, { isLoading: isLoadingAdd }] = useAddToCartMutation();
-  const [removeFromCart, { isLoading: isLoadingRemove }] = useRemoveFromCartMutation();
-  const [increment, { isLoading: isLoadingIncrement }] = useIncrementCartItemQuantityMutation();
-  const [decrement, { isLoading: isLoadingDecrement }] = useDecrementCartItemQuantityMutation();
-
-  const onClickDecrement = ({ id, quantity }: { id: string; quantity: number }) => {
-    if (quantity <= 1) return;
-    decrement({ id, quantity });
-  };
+  // const onClickDecrement = ({
+  //   cart_item_id,
+  //   quantity,
+  // }: {
+  //   cart_item_id: string;
+  //   quantity: number;
+  // }) => {
+  //   if (quantity <= 1) return;
+  //   decrement({ cart_item_id, product_item_id: productId, quantity });
+  // };
 
   return (
     <div className={clsx('', className)} data-testid="cartControls">
       {!isAddedToCart ? (
-        <AddToCartButton productId={productId} addToCart={addToCart} isLoadingAdd={isLoadingAdd} />
+        <AddToCartButton productId={productId} />
       ) : (
-        <CartItemHandlers
-          cartItemId={cartItemId}
-          quantity={quantity}
-          removeFromCart={removeFromCart}
-          increment={increment}
-          decrement={onClickDecrement}
-          isLoadingRemove={isLoadingRemove}
-          isLoadingIncrement={isLoadingIncrement}
-          isLoadingDecrement={isLoadingDecrement}
-        />
+        <CartItemHandlers productItemId={productId} cartItemId={cartItemId} quantity={quantity} />
       )}
     </div>
   );

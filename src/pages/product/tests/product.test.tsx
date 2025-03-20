@@ -2,11 +2,10 @@ import { TestProviders } from '@/shared';
 import { render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ProductPage } from '../product';
-import { mockProducts, mockSession } from './mocks';
+import { mockProducts } from './mocks';
 
 const mocks = vi.hoisted(() => ({
   useParams: vi.fn(),
-  useGetSessionQuery: vi.fn(),
   useGetProductQuery: vi.fn(),
 }));
 
@@ -19,14 +18,9 @@ vi.mock('@/entities/product/api', () => ({
   useGetProductQuery: mocks.useGetProductQuery,
 }));
 
-vi.mock('@/entities/user/api', () => ({
-  useGetSessionQuery: mocks.useGetSessionQuery,
-}));
-
 describe('ProductPage', () => {
   beforeEach(() => {
     mocks.useParams.mockReturnValue({ id: '123' });
-    mocks.useGetSessionQuery.mockReturnValue(mockSession);
     mocks.useGetProductQuery.mockReturnValue({ data: mockProducts });
   });
 
@@ -39,11 +33,10 @@ describe('ProductPage', () => {
     expect(screen.getByTestId('productPage')).toBeInTheDocument();
     expect(screen.getByTestId('product')).toBeInTheDocument();
     expect(mocks.useParams).toBeCalled();
-    expect(mocks.useGetSessionQuery).toBeCalled();
     expect(mocks.useGetProductQuery).toBeCalled();
     expect(mocks.useGetProductQuery).toHaveBeenCalledWith(
-      { id: '123', user_id: '321' },
-      { skip: false },
+      { id: '123' },
+      { skip: false, refetchOnMountOrArgChange: false },
     );
   });
 
@@ -51,10 +44,9 @@ describe('ProductPage', () => {
     mocks.useParams.mockReturnValue({ id: undefined });
     render(<TestProviders component={<ProductPage />} />);
     expect(screen.getByTestId('productPage')).toBeInTheDocument();
-    expect(mocks.useGetSessionQuery).toBeCalled();
     expect(mocks.useGetProductQuery).toHaveBeenCalledWith(
-      { id: undefined, user_id: '321' },
-      { skip: true },
+      { id: undefined },
+      { skip: true, refetchOnMountOrArgChange: false },
     );
   });
 });

@@ -39,12 +39,11 @@ describe('ProductService', () => {
   });
 
   it('должен возвращать данные', async () => {
-    const result = await productService.getById('123', '321');
+    const result = await productService.getById('123');
     expect(result).toEqual(mockData);
-    expect(mocks.from).toHaveBeenCalledWith('products');
-    expect(mocks.from().select).toHaveBeenCalledWith(`*, product_items (*, cart_items(*))`);
+    expect(mocks.from).toHaveBeenCalledWith('product_items');
+    expect(mocks.from().select).toHaveBeenCalledWith('*, products(*), cart_items(*)');
     expect(mockEq).toHaveBeenCalledWith('id', '123');
-    expect(mockEq).toHaveBeenCalledWith('product_items.cart_items.user_id', '321');
     expect(mockSelect).toHaveBeenCalled();
   });
 
@@ -61,7 +60,7 @@ describe('ProductService', () => {
       })),
     });
     try {
-      await productService.getById('123', '321');
+      await productService.getById('123');
     } catch (error) {
       expect(mocks.from).rejects.toThrow();
       expect(error).toEqual(mockError);

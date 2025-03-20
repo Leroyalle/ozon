@@ -6,29 +6,18 @@ import { CartItemName } from '../components';
 import { WandSparkles } from 'lucide-react';
 
 interface Props {
+  productItemId: string;
   id: string;
   name: string;
-  removeFromCart: (id: string) => void;
-  isLoadingRemove: boolean;
   className?: string;
 }
 
-export const CartItemDetails: FC<Props> = ({
-  id,
-  name,
-  removeFromCart,
-  isLoadingRemove,
-  className,
-}) => {
+export const CartItemDetails: FC<Props> = ({ productItemId, id, name, className }) => {
   return (
     <div className={clsx('flex flex-col gap-y-2', className)}>
       <CartItemName name={name} />
       <div className="flex items-center gap-x-2">
-        <RemoveFromCartButton
-          cartItemId={id}
-          removeFromCart={removeFromCart}
-          isLoadingRemove={isLoadingRemove}
-        />
+        <RemoveFromCartButton productItemId={productItemId} cartItemId={id} />
         <Button size="sm" startContent={<WandSparkles size={20} />}>
           Купить
         </Button>

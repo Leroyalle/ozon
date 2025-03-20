@@ -1,14 +1,14 @@
 import type { FC } from 'react';
 import { Button } from '@heroui/button';
+import { useAddToCartMutation } from '@/features';
 
 interface Props {
   productId: string;
-  addToCart: ({ product_item_id, quantity }: { product_item_id: string; quantity: number }) => void;
-  isLoadingAdd: boolean;
   className?: string;
 }
 
-export const AddToCartButton: FC<Props> = ({ productId, addToCart, isLoadingAdd, className }) => {
+export const AddToCartButton: FC<Props> = ({ productId, className }) => {
+  const [addToCart, { isLoading: isLoadingAdd }] = useAddToCartMutation();
   return (
     <Button
       data-testid="addToCartButton"

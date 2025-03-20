@@ -9,13 +9,19 @@ export type AddToCartParams = {
 };
 
 export type QuantityChangeParams = {
-  id: string;
+  product_item_id: string;
+  cart_item_id: string;
   quantity: number;
+};
+
+export type RemoveFromCartParams = {
+  product_item_id: string;
+  cart_item_id: string;
 };
 
 export type ToggleSelectionParams = {
   isSelected: boolean;
-  id?: string;
+  cart_item_id?: string;
 };
 
 export type CartItemWithRelations =

@@ -4,6 +4,7 @@ import {
   AddToCartParams,
   CartItemWithRelations,
   QuantityChangeParams,
+  RemoveFromCartParams,
   TCartItem,
   ToggleSelectionParams,
 } from '../types';
@@ -12,22 +13,34 @@ export const cartApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
     addToCart: build.mutation<TCartItem[], AddToCartParams>({
       queryFn: async (params) => await cartService.addToCart(params),
-      invalidatesTags: ['Cart', 'Product'],
+      invalidatesTags: (_, __, params) => [
+        { type: 'Cart' },
+        { type: 'Product', id: params.product_item_id },
+      ],
     }),
 
-    removeFromCart: build.mutation<TCartItem[], string>({
-      queryFn: async (id) => await cartService.removeFromCart(id),
-      invalidatesTags: ['Cart', 'Product'],
+    removeFromCart: build.mutation<TCartItem[], RemoveFromCartParams>({
+      queryFn: async (params) => await cartService.removeFromCart(params.cart_item_id),
+      invalidatesTags: (_, __, params) => [
+        { type: 'Cart' },
+        { type: 'Product', id: params.product_item_id },
+      ],
     }),
 
     incrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({
       queryFn: async (params) => await cartService.incrementQuantity(params),
-      invalidatesTags: ['Cart'],
+      invalidatesTags: (_, __, params) => [
+        { type: 'Cart' },
+        { type: 'Product', id: params.product_item_id },
+      ],
     }),
 
     decrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({
       queryFn: async (params) => await cartService.decrementQuantity(params),
-      invalidatesTags: ['Cart'],
+      invalidatesTags: (_, __, params) => [
+        { type: 'Cart' },
+        { type: 'Product', id: params.product_item_id },
+      ],
     }),
 
     getCartItems: build.query<CartItemWithRelations[] | null, void>({
@@ -36,8 +49,7 @@ export const cartApi = rootApi.injectEndpoints({
     }),
 
     toggleCartItemSelection: build.mutation<null, ToggleSelectionParams>({
-      queryFn: async ({ isSelected, id }) =>
-        cartService.toggleCartItemSelection({ isSelected, id }),
+      queryFn: async (params) => cartService.toggleCartItemSelection(params),
       invalidatesTags: ['Cart'],
     }),
   }),

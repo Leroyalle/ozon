@@ -1,16 +1,16 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { ProductWithItems } from '@/entities';
+import { ProductItemWithRelations } from '@/entities';
 
 interface Props {
-  item: ProductWithItems;
+  item: ProductItemWithRelations;
   className?: string;
 }
 
 export const ProductInfo: FC<Props> = ({ item, className }) => {
   return (
     <div className={clsx('', className)} data-testid="productInfo">
-      {item.name}
+      {item.products.name}
     </div>
   );
 };

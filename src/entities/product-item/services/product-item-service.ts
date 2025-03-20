@@ -3,14 +3,14 @@ import { ProductSort } from '../types';
 
 class ProductItemService {
   public async getProducts({ categoryId, name }: ProductSort) {
-    const query = supabase.from('products').select('*, product_items!inner(*)');
+    const query = supabase.from('product_items').select('*, products!inner(*)');
 
     if (categoryId) {
-      query.eq('category', categoryId);
+      query.eq('products.category', categoryId);
     }
 
     if (name) {
-      query.eq('name', name);
+      query.eq('products.name', name);
     }
 
     const { data, error } = await query;
