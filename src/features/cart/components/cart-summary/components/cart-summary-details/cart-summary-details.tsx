@@ -16,7 +16,7 @@ export const CartSummaryDetails: FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={className}>
+    <div className={className} data-testid="cartSummaryDetails">
       <dl>
         <div className="flex items-center justify-between">
           <dt className="text-xl font-semibold">Ваша корзина:</dt>

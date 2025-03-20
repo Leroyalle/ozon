@@ -9,7 +9,9 @@ interface Props {
 
 export const EmptyState: FC<Props> = ({ className }) => {
   return (
-    <Surface className={clsx('bg-content3 flex gap-x-2 items-center', className)}>
+    <Surface
+      className={clsx('bg-content3 flex gap-x-2 items-center', className)}
+      data-testid="emptyState">
       <Info size={20} /> Выберите товары, чтобы перейти к оформлению заказа
     </Surface>
   );

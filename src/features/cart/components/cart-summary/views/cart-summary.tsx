@@ -19,7 +19,12 @@ export const CartSummary: FC<Props> = ({ items, className }) => {
     <Surface
       className={clsx('flex-1', !hasItems && 'pointer-events-none opacity-60', className)}
       data-testid="cartSummary">
-      <Button color={hasItems ? 'success' : 'default'} size="lg" fullWidth disabled={!hasItems}>
+      <Button
+        color={hasItems ? 'success' : 'default'}
+        size="lg"
+        fullWidth
+        disabled={!hasItems}
+        data-testid="checkoutButton">
         Перейти к оформлению
       </Button>
       <hr className="border-t border-gray-300 my-4" />
