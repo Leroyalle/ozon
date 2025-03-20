@@ -1,5 +1,5 @@
 import { supabase } from '@/shared';
-import { AddToCartParams, QuantityChangeParams } from '../types';
+import { AddToCartParams, QuantityChangeParams, ToggleSelectionParams } from '../types';
 
 class CartService {
   public async addToCart(params: AddToCartParams) {
@@ -54,6 +54,24 @@ class CartService {
     const { data, error } = await supabase
       .from('cart_items')
       .select(`*, product_items (*,products(*))`);
+
+    if (error) {
+      throw error;
+    }
+
+    return { data };
+  }
+
+  public async toggleCartItemSelection({ isSelected, id }: ToggleSelectionParams) {
+    const query = supabase.from('cart_items').update({ isSelected });
+
+    if (id) {
+      query.eq('id', id); // Обновляем только одну строку
+    } else {
+      query.not('id', 'is', null); // Обновляем все строки
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       throw error;

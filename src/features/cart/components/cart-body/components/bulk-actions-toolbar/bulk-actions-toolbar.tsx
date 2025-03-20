@@ -3,21 +3,25 @@ import { clsx } from 'clsx';
 import { Button, Checkbox } from '@heroui/react';
 import { Forward } from 'lucide-react';
 import { Surface } from '@/shared';
-import { useAppSelector } from '@/shared/store/store';
 import { CartItemWithRelations } from '@/features/cart/types';
+import { useToggleCartItemSelectionMutation } from '@/features';
 
 interface Props {
   initialItems: CartItemWithRelations[];
-  onSelectAll: (value: boolean) => void;
+
   className?: string;
 }
 
-export const BulkActionsToolbar: FC<Props> = ({ initialItems, onSelectAll, className }) => {
-  const items = useAppSelector((state) => state.cartSummarySlice.items);
+export const BulkActionsToolbar: FC<Props> = ({ initialItems, className }) => {
+  const selectedItems = initialItems.filter((item) => item.isSelected);
+  const [toggleCartItemSelection] = useToggleCartItemSelectionMutation();
+  const isSelected = selectedItems.length === initialItems.length;
 
   return (
     <Surface className={clsx('flex justify-between items-center gap-2', className)}>
-      <Checkbox isSelected={items.length === initialItems.length} onValueChange={onSelectAll}>
+      <Checkbox
+        isSelected={isSelected}
+        onValueChange={() => toggleCartItemSelection({ isSelected: !isSelected })}>
         Выбрать все
       </Checkbox>
       <Button color="primary" variant="flat" startContent={<Forward />}>

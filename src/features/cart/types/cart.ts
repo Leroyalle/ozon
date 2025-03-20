@@ -13,6 +13,11 @@ export type QuantityChangeParams = {
   quantity: number;
 };
 
+export type ToggleSelectionParams = {
+  isSelected: boolean;
+  id?: string;
+};
+
 export type CartItemWithRelations =
   | TCartItem & {
       product_items: TProductItem & {

@@ -11,7 +11,7 @@ describe('CartItemHandlers', () => {
     render(
       <CartItemHandlers
         cartItemId="123"
-        quantity={1}
+        quantity={2}
         removeFromCart={removeFromCart}
         increment={increment}
         decrement={decrement}
@@ -30,7 +30,7 @@ describe('CartItemHandlers', () => {
     await userEvent.click(screen.getByTestId('removeFromCartButton'));
 
     expect(removeFromCart).toHaveBeenCalledWith('123');
-    expect(increment).toHaveBeenCalledWith({ id: '123', quantity: 1 });
-    expect(decrement).toHaveBeenCalledWith({ id: '123', quantity: 1 });
+    expect(increment).toHaveBeenCalledWith({ id: '123', quantity: 2 });
+    expect(decrement).toHaveBeenCalledWith({ id: '123', quantity: 2 });
   });
 });
