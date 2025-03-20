@@ -16,7 +16,9 @@ export const CartSummary: FC<Props> = ({ items, className }) => {
   const { totalAmount, discountAmount } = calcTotalAmount(items, 0.1);
 
   return (
-    <Surface className={clsx('flex-1', !hasItems && 'pointer-events-none opacity-60', className)}>
+    <Surface
+      className={clsx('flex-1', !hasItems && 'pointer-events-none opacity-60', className)}
+      data-testid="cartSummary">
       <Button color={hasItems ? 'success' : 'default'} size="lg" fullWidth disabled={!hasItems}>
         Перейти к оформлению
       </Button>

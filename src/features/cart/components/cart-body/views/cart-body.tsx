@@ -10,7 +10,7 @@ interface Props {
 
 export const CartBody: FC<Props> = ({ items, className }) => {
   return (
-    <div className={clsx('', className)}>
+    <div className={clsx('', className)} data-testid="cartBody">
       <div className="flex flex-col gap-y-4">
         <BulkActionsToolbar initialItems={items} />
         <CartItemList items={items} />

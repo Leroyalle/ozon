@@ -15,7 +15,7 @@ export const Cart: FC<Props> = ({ className }) => {
   }
 
   return (
-    <div className={clsx('', className)}>
+    <div className={clsx('', className)} data-testid="cart">
       <CartHeader className="my-8" length={cartItems.length} />
       <div className="flex gap-x-4">
         <CartBody items={cartItems} className="flex-[2]" />
