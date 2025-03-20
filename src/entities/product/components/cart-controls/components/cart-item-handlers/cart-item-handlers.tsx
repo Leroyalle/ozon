@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
-import { Button } from '@heroui/button';
+import { CartQuantityControl, RemoveFromCartButton } from '@/shared';
 
 interface Props {
   cartItemId: string;
@@ -29,25 +29,19 @@ export const CartItemHandlers: FC<Props> = ({
     <div
       className={clsx('flex items-center gap-x-3 select-none', className)}
       data-testid="cartItemHandlers">
-      <Button
-        data-testid="decrementButton"
-        onPress={() => decrement({ id: cartItemId, quantity })}
-        isLoading={isLoadingDecrement}>
-        -
-      </Button>
-      <p className="select-none">{quantity}</p>
-      <Button
-        data-testid="incrementButton"
-        onPress={() => increment({ id: cartItemId, quantity })}
-        isLoading={isLoadingIncrement}>
-        +
-      </Button>
-      <Button
-        data-testid="removeFromCartButton"
-        onPress={() => removeFromCart(cartItemId)}
-        isLoading={isLoadingRemove}>
-        Удалить
-      </Button>
+      <CartQuantityControl
+        cartItemId={cartItemId}
+        quantity={quantity}
+        increment={increment}
+        decrement={decrement}
+        isLoadingIncrement={isLoadingIncrement}
+        isLoadingDecrement={isLoadingDecrement}
+      />
+      <RemoveFromCartButton
+        cartItemId={cartItemId}
+        removeFromCart={removeFromCart}
+        isLoadingRemove={isLoadingRemove}
+      />
     </div>
   );
 };

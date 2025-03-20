@@ -1,6 +1,6 @@
 import { rootApi } from '@/shared/api';
 import { cartService } from '../services';
-import { AddToCartParams, CartItemsWithRelations, QuantityChangeParams, TCartItem } from '../types';
+import { AddToCartParams, CartItemWithRelations, QuantityChangeParams, TCartItem } from '../types';
 
 export const cartApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
@@ -24,8 +24,9 @@ export const cartApi = rootApi.injectEndpoints({
       invalidatesTags: ['Cart', 'Product'],
     }),
 
-    getCartItems: build.query<CartItemsWithRelations, void>({
+    getCartItems: build.query<CartItemWithRelations[] | null, void>({
       queryFn: async () => cartService.getCartItems(),
+      providesTags: ['Cart'],
     }),
   }),
 });

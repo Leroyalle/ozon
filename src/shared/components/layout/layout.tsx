@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Container } from '../container';
+import { Container } from '../ui/container';
 import { Outlet } from 'react-router-dom';
 import { Header } from '@/widgets';
 

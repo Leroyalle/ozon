@@ -17,7 +17,7 @@ export const Cart: FC<Props> = ({ className }) => {
   return (
     <div className={clsx('', className)}>
       <CartHeader className="my-8" length={cartItems.length} />
-      <CartBody />
+      <CartBody items={cartItems} />
     </div>
   );
 };

@@ -13,10 +13,9 @@ export type QuantityChangeParams = {
   quantity: number;
 };
 
-export type CartItemsWithRelations =
-  | (TCartItem & {
+export type CartItemWithRelations =
+  | TCartItem & {
       product_items: TProductItem & {
         products: TProduct;
       };
-    })[]
-  | null;
+    };
