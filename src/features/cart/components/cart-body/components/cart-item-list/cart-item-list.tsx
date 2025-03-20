@@ -12,14 +12,14 @@ interface Props {
 export const CartItemList: FC<Props> = ({ items, className }) => {
   if (items.length === 0) {
     return (
-      <Surface className={clsx('', className)}>
+      <Surface className={clsx('', className)} data-testid="emptyCartList">
         Корзина пуста. Добавьте товары чтобы переходить к оформлению.
       </Surface>
     );
   }
 
   return (
-    <Surface className={clsx('', className)}>
+    <Surface className={clsx('', className)} data-testid="cartItemList">
       {items.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}

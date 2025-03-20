@@ -22,10 +22,13 @@ export const BulkActionsToolbar: FC<Props> = ({ initialItems, className }) => {
   }
 
   return (
-    <Surface className={clsx('flex justify-between items-center gap-2', className)}>
+    <Surface
+      className={clsx('flex justify-between items-center gap-2', className)}
+      data-testid="bulkActionsToolbar">
       <Checkbox
         isSelected={isSelected}
-        onValueChange={() => toggleCartItemSelection({ isSelected: !isSelected })}>
+        onValueChange={() => toggleCartItemSelection({ isSelected: !isSelected })}
+        data-testid="selectAllCheckbox">
         Выбрать все
       </Checkbox>
       <Button color="primary" variant="flat" startContent={<Forward />}>
