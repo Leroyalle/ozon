@@ -2,21 +2,18 @@ import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { CartItemControls, CartItemDetails, CartItemImage } from '../components';
 import {
+  CartItemWithRelations,
   useDecrementCartItemQuantityMutation,
   useIncrementCartItemQuantityMutation,
   useRemoveFromCartMutation,
 } from '@/features';
 
 interface Props {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
+  item: CartItemWithRelations;
   className?: string;
 }
 
-export const CartItem: FC<Props> = ({ id, name, price, image, quantity, className }) => {
+export const CartItem: FC<Props> = ({ item, className }) => {
   const [removeFromCart, { isLoading: isLoadingRemove }] = useRemoveFromCartMutation();
   const [increment, { isLoading: isLoadingIncrement }] = useIncrementCartItemQuantityMutation();
   const [decrement, { isLoading: isLoadingDecrement }] = useDecrementCartItemQuantityMutation();
@@ -24,18 +21,18 @@ export const CartItem: FC<Props> = ({ id, name, price, image, quantity, classNam
   return (
     <div className={clsx('grid grid-cols-2 gap-x-4', className)}>
       <div className="flex gap-x-4">
-        <CartItemImage image={image} />
+        <CartItemImage item={item} />
         <CartItemDetails
-          id={id}
-          name={name}
+          id={item.id}
+          name={item.product_items.products.name}
           removeFromCart={removeFromCart}
           isLoadingRemove={isLoadingRemove}
         />
       </div>
       <CartItemControls
-        id={id}
-        price={price}
-        quantity={quantity}
+        id={item.id}
+        price={item.product_items.price}
+        quantity={item.quantity}
         increment={increment}
         decrement={decrement}
         isLoadingIncrement={isLoadingIncrement}
