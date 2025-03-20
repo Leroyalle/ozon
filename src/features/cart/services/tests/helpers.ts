@@ -7,5 +7,6 @@ export const createMockChain = (data: unknown) => ({
   eq: vi.fn().mockReturnThis(),
   not: vi.fn().mockReturnThis(),
   select: vi.fn().mockReturnThis(),
+  order: vi.fn().mockReturnThis(),
   then: vi.fn().mockImplementation((callback) => callback({ data })),
 });

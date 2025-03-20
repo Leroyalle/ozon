@@ -53,7 +53,8 @@ class CartService {
   public async getCartItems() {
     const { data, error } = await supabase
       .from('cart_items')
-      .select(`*, product_items (*,products(*))`);
+      .select(`*, product_items (*,products(*))`)
+      .order('created_at', { ascending: false });
 
     if (error) {
       throw error;

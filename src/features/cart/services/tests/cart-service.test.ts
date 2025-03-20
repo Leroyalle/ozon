@@ -11,6 +11,7 @@ const mocks = vi.hoisted(() => ({
     eq: vi.fn().mockReturnThis(),
     not: vi.fn().mockReturnThis(),
     select: vi.fn().mockReturnThis(),
+    order: vi.fn().mockReturnThis(),
     then: vi.fn(),
   })),
 }));
@@ -121,7 +122,8 @@ describe('CartService', () => {
     mocks.from.mockReturnValue(createMockChain(mockCartItems));
     const result = await cartService.getCartItems();
     expect(mocks.from).toHaveBeenCalledWith('cart_items');
-    expect(mocks.from().select).toHaveBeenCalled();
+    expect(mocks.from().select).toHaveBeenCalledWith(`*, product_items (*,products(*))`);
+    expect(mocks.from().order).toHaveBeenCalledWith('created_at', { ascending: false });
     expect(result).toEqual({ data: mockCartItems });
   });
 

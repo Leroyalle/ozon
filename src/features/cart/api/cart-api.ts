@@ -22,12 +22,12 @@ export const cartApi = rootApi.injectEndpoints({
 
     incrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({
       queryFn: async (params) => await cartService.incrementQuantity(params),
-      invalidatesTags: ['Cart', 'Product'],
+      invalidatesTags: ['Cart'],
     }),
 
     decrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({
       queryFn: async (params) => await cartService.decrementQuantity(params),
-      invalidatesTags: ['Cart', 'Product'],
+      invalidatesTags: ['Cart'],
     }),
 
     getCartItems: build.query<CartItemWithRelations[] | null, void>({
