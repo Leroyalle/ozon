@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 interface Props {
   items: ProductWithItems[] | undefined;
   isFocused: boolean;
+  setIsFocused: (isFocused: boolean) => void;
   className?: string;
 }
 
-export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
+export const SearchResult: FC<Props> = ({ items, isFocused, setIsFocused, className }) => {
   if (!isFocused || !items) return;
 
   return (
@@ -27,7 +28,7 @@ export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
       ) : (
         <div className="flex flex-col gap-y-1">
           {items.slice(0, 5).map((item) => (
-            <Link to={`/product/${item.id}`} key={item.id}>
+            <Link to={`/product/${item.id}`} key={item.id} onClick={() => setIsFocused(false)}>
               {item.name}
             </Link>
           ))}

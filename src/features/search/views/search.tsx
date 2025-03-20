@@ -27,7 +27,7 @@ export const Search: FC<Props> = ({ className }) => {
         setSearchValue={setSearchValue}
         setIsFocused={setIsFocused}
       />
-      <SearchResult items={products} isFocused={isFocused} />
+      <SearchResult items={products} isFocused={isFocused} setIsFocused={setIsFocused} />
     </div>
   );
 };
