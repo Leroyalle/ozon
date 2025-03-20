@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
     delete: vi.fn().mockReturnThis(),
     update: vi.fn().mockReturnThis(),
     eq: vi.fn().mockReturnThis(),
+    not: vi.fn().mockReturnThis(),
     select: vi.fn().mockReturnThis(),
     then: vi.fn(),
   })),
@@ -128,6 +129,34 @@ describe('CartService', () => {
     mocks.from.mockReturnValue(createMockChain(mockError));
     try {
       await cartService.getCartItems();
+    } catch (error) {
+      expect(mocks.from).rejects.toThrow();
+      expect(error).toEqual(mockError);
+    }
+  });
+
+  it('toggleCartItemSelection вызывается с id и возвращает данные', async () => {
+    mocks.from.mockReturnValue(createMockChain(mockCartItems));
+    const result = await cartService.toggleCartItemSelection({ isSelected: true, id: '123' });
+    expect(mocks.from).toHaveBeenCalledWith('cart_items');
+    expect(mocks.from().eq).toHaveBeenCalledWith('id', '123');
+    expect(mocks.from().not).not.toHaveBeenCalled();
+    expect(result).toEqual({ data: mockCartItems });
+  });
+
+  it('toggleCartItemSelection вызывается без id и возвращает данные', async () => {
+    mocks.from.mockReturnValue(createMockChain(mockCartItems));
+    const result = await cartService.toggleCartItemSelection({ isSelected: true });
+    expect(mocks.from).toHaveBeenCalledWith('cart_items');
+    expect(mocks.from().eq).not.toHaveBeenCalled();
+    expect(mocks.from().not).toHaveBeenCalled();
+    expect(result).toEqual({ data: mockCartItems });
+  });
+
+  it('toggleCartItemSelection выбрасывает ошибку', async () => {
+    mocks.from.mockReturnValue(createMockChain(mockError));
+    try {
+      await cartService.toggleCartItemSelection({ isSelected: true });
     } catch (error) {
       expect(mocks.from).rejects.toThrow();
       expect(error).toEqual(mockError);
