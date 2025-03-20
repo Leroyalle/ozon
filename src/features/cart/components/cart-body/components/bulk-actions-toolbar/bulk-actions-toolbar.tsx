@@ -27,6 +27,7 @@ export const BulkActionsToolbar: FC<Props> = ({ initialItems, className }) => {
       data-testid="bulkActionsToolbar">
       <Checkbox
         isSelected={isSelected}
+        aria-checked={isSelected}
         onValueChange={() => toggleCartItemSelection({ isSelected: !isSelected })}
         data-testid="selectAllCheckbox">
         Выбрать все
