@@ -9,7 +9,7 @@ interface Props {
 export const CartItemPrice: FC<Props> = ({ price, className }) => {
   return (
     <div className={clsx('', className)}>
-      <span>{price} &#8381;</span>
+      <span className="text-lime-500">{price} &#8381;</span>
     </div>
   );
 };

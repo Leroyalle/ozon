@@ -19,7 +19,7 @@ export const CartItemList: FC<Props> = ({ items, className }) => {
   }
 
   return (
-    <Surface className={clsx('', className)} data-testid="cartItemList">
+    <Surface className={clsx('flex flex-col gap-y-4', className)} data-testid="cartItemList">
       {items.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}

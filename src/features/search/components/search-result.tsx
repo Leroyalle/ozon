@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { ProductWithItems } from '@/entities';
+import { Link } from 'react-router-dom';
 
 interface Props {
   items: ProductWithItems[] | undefined;
@@ -26,7 +27,9 @@ export const SearchResult: FC<Props> = ({ items, isFocused, className }) => {
       ) : (
         <div className="flex flex-col gap-y-1">
           {items.slice(0, 5).map((item) => (
-            <span key={item.id}>{item.name}</span>
+            <Link to={`/product/${item.id}`} key={item.id}>
+              {item.name}
+            </Link>
           ))}
         </div>
       )}

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { SearchResult } from '../search-result';
 import { ProductWithItems } from '@/entities';
+import { TestProviders } from '@/shared';
 
 describe('SearchResult', () => {
   const items = [
@@ -25,7 +26,7 @@ describe('SearchResult', () => {
   it('должен корректно рендериться', () => {
     const isFocused = true;
 
-    render(<SearchResult isFocused={isFocused} items={items} />);
+    render(<TestProviders component={<SearchResult isFocused={isFocused} items={items} />} />);
 
     expect(screen.getByTestId('results')).toBeInTheDocument();
     expect(screen.getByText('Phones')).toBeInTheDocument();
@@ -35,7 +36,7 @@ describe('SearchResult', () => {
     const isFocused = true;
     const items = undefined;
 
-    render(<SearchResult isFocused={isFocused} items={items} />);
+    render(<TestProviders component={<SearchResult isFocused={isFocused} items={items} />} />);
     const results = screen.queryByTestId('results');
     expect(results).toBeNull();
   });
@@ -43,7 +44,7 @@ describe('SearchResult', () => {
   it('должен возвращать undefined если isFocused false', () => {
     const isFocused = false;
 
-    render(<SearchResult isFocused={isFocused} items={items} />);
+    render(<TestProviders component={<SearchResult isFocused={isFocused} items={items} />} />);
     const results = screen.queryByTestId('results');
     expect(results).toBeNull();
   });
@@ -52,7 +53,7 @@ describe('SearchResult', () => {
     const isFocused = true;
     const items: ProductWithItems[] = [];
 
-    render(<SearchResult isFocused={isFocused} items={items} />);
+    render(<TestProviders component={<SearchResult isFocused={isFocused} items={items} />} />);
 
     expect(screen.getByText(/ничего не найдено/i)).toBeInTheDocument();
   });

@@ -20,7 +20,6 @@ export const SearchField: FC<Props> = ({ searchValue, setSearchValue, setIsFocus
           'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20',
       }}
       onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
       placeholder="Type to search..."
       size="sm"
       startContent={<SearchIcon size={18} />}
