@@ -13,7 +13,7 @@ vi.mock('@/features/cart/api', () => ({
   useToggleCartItemSelectionMutation: mocks.useToggleCartItemSelectionMutation,
 }));
 
-describe('Cart', () => {
+describe('BulkActionsToolbar', () => {
   let toggleCartItemSelection: Mock;
   beforeEach(() => {
     toggleCartItemSelection = vi.fn();

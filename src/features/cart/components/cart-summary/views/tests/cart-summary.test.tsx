@@ -4,7 +4,7 @@ import { CartSummary } from '../cart-summary';
 import { mockCartItems } from './mocks';
 
 describe('CartSummary', () => {
-  it('должен рендериться', () => {
+  it('должен рендериться если товары есть', () => {
     render(<CartSummary items={mockCartItems} />);
     expect(screen.getByTestId('cartSummary')).toBeInTheDocument();
     expect(screen.getByTestId('checkoutButton')).toBeInTheDocument();

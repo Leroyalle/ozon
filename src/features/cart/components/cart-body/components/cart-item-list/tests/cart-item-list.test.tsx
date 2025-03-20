@@ -18,7 +18,7 @@ vi.mock('@/features/cart/api', () => ({
   useDecrementCartItemQuantityMutation: mocks.useDecrementCartItemQuantityMutation,
 }));
 
-describe('Cart', () => {
+describe('CartItemList', () => {
   let toggleCartItemSelection: Mock;
   beforeEach(() => {
     toggleCartItemSelection = vi.fn();

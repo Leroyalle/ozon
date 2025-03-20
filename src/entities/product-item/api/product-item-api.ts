@@ -6,6 +6,7 @@ export const productItemApi = rootApi.injectEndpoints({
     getProducts: build.query<ProductWithItems[], ProductSort>({
       queryFn: async (sortData) => await productItemService.getProducts(sortData),
       keepUnusedDataFor: 60 * 100,
+      providesTags: ['Product'],
     }),
   }),
 });

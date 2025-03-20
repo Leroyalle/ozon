@@ -18,13 +18,13 @@ export const ProductItem: FC<Props> = ({ item, className }) => {
             className="w-full object-cover h-[140px]"
             radius="lg"
             shadow="sm"
-            src={item.product_items[0].image}
+            src={item.product_items[0]?.image}
             width="100%"
           />
         </CardBody>
         <CardFooter className="text-small justify-between">
           <b>{item.name}</b>
-          <p className="text-default-500">{item.product_items[0].price}</p>
+          <p className="text-default-500">{item.product_items[0]?.price}</p>
         </CardFooter>
       </Link>
     </Card>

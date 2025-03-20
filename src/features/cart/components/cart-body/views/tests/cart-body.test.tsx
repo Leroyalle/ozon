@@ -20,7 +20,7 @@ vi.mock('../../api', () => ({
   useDecrementCartItemQuantityMutation: mocks.useDecrementCartItemQuantityMutation,
 }));
 
-describe('Cart', () => {
+describe('CartBody', () => {
   let toggleCartItemSelection: Mock;
   beforeEach(() => {
     toggleCartItemSelection = vi.fn();

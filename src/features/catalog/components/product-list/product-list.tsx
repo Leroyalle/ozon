@@ -13,7 +13,7 @@ export const ProductList: FC<Props> = ({ items, className }) => {
   }
 
   return (
-    <div className={clsx('', className)}>
+    <div className={clsx('flex items-center flex-wrap gap-4', className)}>
       {items.map((item) => (
         <ProductItem key={item.id} item={item} />
       ))}
