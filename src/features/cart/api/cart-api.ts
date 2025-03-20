@@ -1,6 +1,6 @@
 import { rootApi } from '@/shared/api';
 import { cartService } from '../services';
-import { AddToCartParams, QuantityChangeParams, TCartItem } from '../types';
+import { AddToCartParams, CartItemsWithRelations, QuantityChangeParams, TCartItem } from '../types';
 
 export const cartApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
@@ -23,11 +23,21 @@ export const cartApi = rootApi.injectEndpoints({
       queryFn: async (params) => await cartService.decrementQuantity(params),
       invalidatesTags: ['Cart', 'Product'],
     }),
+
+    getCartItems: build.query<CartItemsWithRelations, void>({
+      queryFn: async () => cartService.getCartItems(),
+    }),
   }),
 });
 
 export const {
-  endpoints: { addToCart, removeFromCart, incrementCartItemQuantity, decrementCartItemQuantity },
+  endpoints: {
+    addToCart,
+    removeFromCart,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+    getCartItems,
+  },
 } = cartApi;
 
 export const {
@@ -35,4 +45,5 @@ export const {
   useRemoveFromCartMutation,
   useIncrementCartItemQuantityMutation,
   useDecrementCartItemQuantityMutation,
+  useGetCartItemsQuery,
 } = cartApi;

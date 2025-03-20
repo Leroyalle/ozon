@@ -49,6 +49,18 @@ class CartService {
 
     return { data };
   }
+
+  public async getCartItems() {
+    const { data, error } = await supabase
+      .from('cart_items')
+      .select(`*, product_items (*,products(*))`);
+
+    if (error) {
+      throw error;
+    }
+
+    return { data };
+  }
 }
 
 export const cartService = new CartService();

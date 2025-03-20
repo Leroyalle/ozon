@@ -1,4 +1,4 @@
-import { AuthPage, Cart, Feed, ProductPage, Profile } from '@/pages';
+import { AuthPage, CartPage, Feed, ProductPage, Profile } from '@/pages';
 import { Layout } from '@/shared';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: <CartPage />,
       },
       {
         path: '/product/:id',

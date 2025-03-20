@@ -1,3 +1,3 @@
 export * from './api';
 export * from './views';
-export { type TCartItem } from './types';
+export { type TCartItem, type CartItemsWithRelations } from './types';
