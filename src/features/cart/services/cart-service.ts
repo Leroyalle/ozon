@@ -66,9 +66,9 @@ class CartService {
     const query = supabase.from('cart_items').update({ isSelected });
 
     if (id) {
-      query.eq('id', id); // Обновляем только одну строку
+      query.eq('id', id);
     } else {
-      query.not('id', 'is', null); // Обновляем все строки
+      query.not('id', 'is', null);
     }
 
     const { data, error } = await query;

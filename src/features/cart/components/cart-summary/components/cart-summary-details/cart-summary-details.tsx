@@ -1,3 +1,5 @@
+import { pluralValues } from '@/features/cart/constants';
+import { getPluralValues } from '@/shared';
 import type { FC } from 'react';
 
 interface Props {
@@ -18,7 +20,9 @@ export const CartSummaryDetails: FC<Props> = ({
       <dl>
         <div className="flex items-center justify-between">
           <dt className="text-xl font-semibold">Ваша корзина:</dt>
-          <dd>{totalCount} товаров</dd>
+          <dd>
+            {totalCount} {getPluralValues(totalCount, pluralValues)}
+          </dd>
         </div>
         <div className="flex items-center justify-between">
           <dt className="font-light text-foreground/80">Товары</dt>

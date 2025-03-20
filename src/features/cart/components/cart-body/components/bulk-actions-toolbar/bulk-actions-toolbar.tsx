@@ -17,6 +17,10 @@ export const BulkActionsToolbar: FC<Props> = ({ initialItems, className }) => {
   const [toggleCartItemSelection] = useToggleCartItemSelectionMutation();
   const isSelected = selectedItems.length === initialItems.length;
 
+  if (initialItems.length === 0) {
+    return null;
+  }
+
   return (
     <Surface className={clsx('flex justify-between items-center gap-2', className)}>
       <Checkbox

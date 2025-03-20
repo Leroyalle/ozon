@@ -10,6 +10,14 @@ interface Props {
 }
 
 export const CartItemList: FC<Props> = ({ items, className }) => {
+  if (items.length === 0) {
+    return (
+      <Surface className={clsx('', className)}>
+        Корзина пуста. Добавьте товары чтобы переходить к оформлению.
+      </Surface>
+    );
+  }
+
   return (
     <Surface className={clsx('', className)}>
       {items.map((item) => (
