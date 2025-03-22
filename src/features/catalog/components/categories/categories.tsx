@@ -14,7 +14,7 @@ export const Categories: FC<Props> = ({ items, onChange, className }) => {
   }
 
   return (
-    <div className={clsx('flex flex-wrap gap-2', className)}>
+    <div className={clsx('flex flex-wrap gap-2', className)} data-testid="categories">
       {items.map(({ id, name }) => (
         <button
           className="text-xs"

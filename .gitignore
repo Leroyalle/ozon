@@ -14,6 +14,8 @@ dist-ssr
 
 coverage/
 
+
+tests-examples/
 .env
 
 # Editor directories and files
@@ -26,3 +28,9 @@ coverage/
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

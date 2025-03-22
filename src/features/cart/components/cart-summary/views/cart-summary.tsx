@@ -24,6 +24,7 @@ export const CartSummary: FC<Props> = ({ items, className }) => {
         size="lg"
         fullWidth
         disabled={!hasItems}
+        onPress={() => alert('Переход к оформлению')}
         data-testid="checkoutButton">
         Перейти к оформлению
       </Button>
