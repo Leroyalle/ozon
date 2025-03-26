@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Cart: FC<Props> = ({ className }) => {
-  const { data: cartItems } = useGetCartItemsQuery(undefined, {
+  const { data: cartItems, isFetching: isLoadingCart } = useGetCartItemsQuery(undefined, {
     refetchOnMountOrArgChange: false,
   });
 
@@ -21,7 +21,10 @@ export const Cart: FC<Props> = ({ className }) => {
       <CartHeader className="my-8" length={cartItems.length} />
       <div className="flex gap-x-4">
         <CartBody items={cartItems} className="flex-[2]" />
-        <CartSummary items={cartItems.filter((item) => item.isSelected)} />
+        <CartSummary
+          items={cartItems.filter((item) => item.isSelected)}
+          isLoading={isLoadingCart}
+        />
       </div>
     </div>
   );

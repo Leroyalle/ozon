@@ -1,15 +1,17 @@
 import type { FC } from 'react';
 import { clsx } from 'clsx';
+import { Link } from 'react-router-dom';
 
 interface Props {
+  productItemId: string;
   name: string;
   className?: string;
 }
 
-export const CartItemName: FC<Props> = ({ name, className }) => {
+export const CartItemName: FC<Props> = ({ productItemId, name, className }) => {
   return (
-    <div className={clsx('', className)}>
+    <Link to={`/product/${productItemId}`} className={clsx('', className)}>
       <span>{name}</span>
-    </div>
+    </Link>
   );
 };

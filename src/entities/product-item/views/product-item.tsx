@@ -23,7 +23,7 @@ export const ProductItem: FC<Props> = ({ item, className }) => {
           />
         </CardBody>
         <CardFooter className="text-small justify-between">
-          <b>{item.products.name}</b>
+          <b data-testid="product-item-name">{item.products.name}</b>
           <p className="text-default-500">{item.price}</p>
         </CardFooter>
       </Link>

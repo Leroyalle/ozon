@@ -15,7 +15,7 @@ interface Props {
 export const CartItemDetails: FC<Props> = ({ productItemId, id, name, className }) => {
   return (
     <div className={clsx('flex flex-col gap-y-2', className)}>
-      <CartItemName name={name} />
+      <CartItemName productItemId={productItemId} name={name} />
       <div className="flex items-center gap-x-2">
         <RemoveFromCartButton productItemId={productItemId} cartItemId={id} />
         <Button size="sm" startContent={<WandSparkles size={20} />}>
