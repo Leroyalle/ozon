@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useGetSessionQuery } from '@/entities';
 import { ShoppingCart } from 'lucide-react';
 import { useGetCartItemsQuery } from '@/features';
+import { Skeleton } from '@heroui/react';
 
 interface Props {
   className?: string;
@@ -11,7 +12,11 @@ interface Props {
 
 export const CartButton: FC<Props> = ({ className }) => {
   const { data } = useGetSessionQuery();
-  const { data: cartItems } = useGetCartItemsQuery();
+  const { data: cartItems, isLoading: isLoadingCart } = useGetCartItemsQuery();
+
+  if (isLoadingCart) {
+    return <Skeleton className="h-[37px] w-[45px] rounded-xl" />;
+  }
 
   if (!data?.session || !cartItems) {
     return null;

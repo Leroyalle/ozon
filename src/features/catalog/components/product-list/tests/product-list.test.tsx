@@ -6,7 +6,7 @@ import { mockProducts } from './mocks';
 
 describe('ProductList', () => {
   it('должен рендерить карточки', () => {
-    render(<TestProviders component={<ProductList items={mockProducts} />} />);
+    render(<TestProviders component={<ProductList items={mockProducts} isLoading={false} />} />);
     const cards = screen.getAllByTestId('product-item');
     expect(cards).length(2);
   });

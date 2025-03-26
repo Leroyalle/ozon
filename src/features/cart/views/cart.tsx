@@ -2,15 +2,24 @@ import type { FC } from 'react';
 import { clsx } from 'clsx';
 import { useGetCartItemsQuery } from '../api';
 import { CartBody, CartHeader, CartSummary } from '../components';
+import { Skeleton } from '@heroui/react';
 
 interface Props {
   className?: string;
 }
 
 export const Cart: FC<Props> = ({ className }) => {
-  const { data: cartItems, isFetching: isLoadingCart } = useGetCartItemsQuery(undefined, {
+  const {
+    data: cartItems,
+    isLoading: isLoadingCart,
+    isFetching: isFetchingCart,
+  } = useGetCartItemsQuery(undefined, {
     refetchOnMountOrArgChange: false,
   });
+
+  if (isLoadingCart) {
+    return <Skeleton className="h-[400px] w-full rounded-xl" />;
+  }
 
   if (!cartItems) {
     return null;
@@ -23,7 +32,7 @@ export const Cart: FC<Props> = ({ className }) => {
         <CartBody items={cartItems} className="flex-[2]" />
         <CartSummary
           items={cartItems.filter((item) => item.isSelected)}
-          isLoading={isLoadingCart}
+          isLoading={isFetchingCart}
         />
       </div>
     </div>

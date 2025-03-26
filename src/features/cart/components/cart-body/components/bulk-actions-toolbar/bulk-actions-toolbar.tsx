@@ -1,7 +1,6 @@
 import { type FC } from 'react';
 import { clsx } from 'clsx';
-import { Button, Checkbox } from '@heroui/react';
-import { Forward } from 'lucide-react';
+import { Checkbox } from '@heroui/react';
 import { Surface } from '@/shared';
 import { CartItemWithRelations } from '@/features/cart/types';
 import { useToggleCartItemSelectionMutation } from '@/features';
@@ -32,9 +31,6 @@ export const BulkActionsToolbar: FC<Props> = ({ initialItems, className }) => {
         data-testid="selectAllCheckbox">
         Выбрать все
       </Checkbox>
-      <Button color="primary" variant="flat" startContent={<Forward />}>
-        Поделиться
-      </Button>
     </Surface>
   );
 };

@@ -13,6 +13,7 @@ export default mergeConfig(
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+      exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**', '.idea', '.git', '.cache'],
     },
   }),
 );

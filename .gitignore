@@ -15,7 +15,6 @@ dist-ssr
 coverage/
 
 
-tests-examples/
 .env
 
 # Editor directories and files
@@ -34,3 +33,4 @@ tests-examples/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+tests-examples/

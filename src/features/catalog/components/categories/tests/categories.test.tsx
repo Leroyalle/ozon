@@ -20,7 +20,7 @@ describe('Categories', () => {
 
     const handleChange = vi.fn();
 
-    render(<Categories items={mocks} onChange={handleChange} />);
+    render(<Categories items={mocks} isLoading={false} onChange={handleChange} />);
 
     const buttons = screen.getAllByTestId('category');
     expect(buttons).toHaveLength(2);

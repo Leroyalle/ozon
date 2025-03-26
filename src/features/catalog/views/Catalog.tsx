@@ -8,16 +8,16 @@ interface Props {
 }
 
 export const Catalog: FC<Props> = ({ className }) => {
-  const { data: categories } = useGetCategoriesQuery(undefined, {
+  const { data: categories, isLoading: isLoadingCategories } = useGetCategoriesQuery(undefined, {
     refetchOnMountOrArgChange: false,
   });
-  const { data: products, setSearchParams } = useGetProducts();
+  const { data: products, setSearchParams, isLoading: isLoadingProducts } = useGetProducts();
 
   return (
     <section className={className}>
       <h2 className="sr-only">Catalog</h2>
-      <Categories items={categories} onChange={setSearchParams} />
-      <ProductList items={products} className="mt-2" />
+      <Categories items={categories} isLoading={isLoadingCategories} onChange={setSearchParams} />
+      <ProductList items={products} isLoading={isLoadingProducts} className="mt-2" />
     </section>
   );
 };
