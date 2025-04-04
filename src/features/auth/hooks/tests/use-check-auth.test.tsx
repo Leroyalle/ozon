@@ -45,7 +45,7 @@ describe('UseCheckAuth', () => {
   it('должен редиректить при пустой сессии', async () => {
     mocks.useGetSessionQuery.mockReturnValue(sessionTrue);
 
-    renderHook(() => useCheckAuth());
+    renderHook(() => useCheckAuth('auth'));
     await waitFor(() => {
       expect(mockNavigate).toBeCalledWith('/');
     });
@@ -54,7 +54,7 @@ describe('UseCheckAuth', () => {
   it('не должен вызываться если сессия есть', async () => {
     mocks.useGetSessionQuery.mockReturnValue(sessionFalse);
 
-    renderHook(() => useCheckAuth());
+    renderHook(() => useCheckAuth('auth'));
     await waitFor(() => {
       expect(mockNavigate).not.toBeCalled();
     });

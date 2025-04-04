@@ -5,8 +5,8 @@ export const calcTotalAmount = (items: CartItemWithRelations[], discount: number
     return (acc += item.product_items.price * item.quantity);
   }, 0);
 
-  const totalAmount = totalCount - totalCount * discount;
-  const discountAmount = totalCount * discount;
+  const totalAmount = Math.round(totalCount - totalCount * discount);
+  const discountAmount = Math.round(totalCount * discount);
 
   return { totalAmount, discountAmount };
 };

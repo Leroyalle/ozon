@@ -9,6 +9,7 @@ interface Props {
 
 export const AddToCartButton: FC<Props> = ({ productId, className }) => {
   const [addToCart, { isLoading: isLoadingAdd }] = useAddToCartMutation();
+
   return (
     <Button
       data-testid="addToCartButton"

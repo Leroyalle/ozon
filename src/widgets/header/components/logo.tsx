@@ -8,8 +8,13 @@ interface Props {
 
 export const Logo: FC<Props> = ({ className }) => {
   return (
-    <Link to="/" className={clsx('uppercase text-3xl text-blue-500 font-bold', className)}>
-      ozon
+    <Link
+      to="/"
+      className={clsx(
+        'text-3xl font-bold tracking-wide text-yellow-500 hover:text-yellow-300 transition duration-300 ease-in-out',
+        className,
+      )}>
+      <span>YYd33 Store</span>
     </Link>
   );
 };

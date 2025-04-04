@@ -8,6 +8,8 @@ import {
   TCartItem,
   ToggleSelectionParams,
 } from '../types';
+import { addToast } from '@heroui/react';
+import { SupabaseError } from '@/shared';
 
 export const cartApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
@@ -17,6 +19,28 @@ export const cartApi = rootApi.injectEndpoints({
         { type: 'Cart' },
         { type: 'Product', id: params.product_item_id },
       ],
+      onQueryStarted: async (params, { queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          addToast({
+            title: 'Товар успешно добавлен в корзину',
+          });
+        } catch (error) {
+          console.log(error);
+          const err = error as SupabaseError;
+          if (err.error.code === '42501') {
+            addToast({
+              title: 'Ошибка',
+              description: 'Авторизируйтесь, чтобы добавить товар в корзину',
+            });
+          } else {
+            addToast({
+              title: 'Ошибка',
+              description: 'Не удалось добавить товар в корзину',
+            });
+          }
+        }
+      },
     }),
 
     removeFromCart: build.mutation<TCartItem[], RemoveFromCartParams>({
@@ -25,6 +49,19 @@ export const cartApi = rootApi.injectEndpoints({
         { type: 'Cart' },
         { type: 'Product', id: params.product_item_id },
       ],
+      onQueryStarted: async (_, { queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          addToast({
+            title: 'Товар успешно удален из корзины',
+          });
+        } catch {
+          addToast({
+            title: 'Ошибка',
+            description: 'Не удалось удалить товар из корзины',
+          });
+        }
+      },
     }),
 
     incrementCartItemQuantity: build.mutation<TCartItem[], QuantityChangeParams>({

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Form, Formik } from 'formik';
-import { EmailField, RememberMeOption } from '../components';
+import { EmailField } from '../components';
 import { Button, ModalBody, ModalFooter } from '@heroui/react';
 import { authSchema, TAuthSchema } from '../services';
 import { useLoginMutation } from '@/features/auth/api';
@@ -28,7 +28,6 @@ export const AuthForm: FC = () => {
               errorMessage={errors.email}
               value={values.email}
             />
-            <RememberMeOption />
           </ModalBody>
           <ModalFooter>
             <Button
