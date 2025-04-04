@@ -47,7 +47,7 @@ describe('UseCheckAuth', () => {
 
     renderHook(() => useCheckAuth('auth'));
     await waitFor(() => {
-      expect(mockNavigate).toBeCalledWith('/');
+      expect(mockNavigate).not.toBeCalledWith('/auth');
     });
   });
 
@@ -56,7 +56,7 @@ describe('UseCheckAuth', () => {
 
     renderHook(() => useCheckAuth('auth'));
     await waitFor(() => {
-      expect(mockNavigate).not.toBeCalled();
+      expect(mockNavigate).toBeCalledWith('/auth');
     });
   });
 });

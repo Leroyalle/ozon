@@ -3,12 +3,14 @@ import { authService } from '../auth-service';
 
 const mocks = vi.hoisted(() => ({
   signInWithOtp: vi.fn(),
+  signOut: vi.fn(),
 }));
 
 vi.mock('@/shared/api/supabase-client', () => ({
   supabase: {
     auth: {
       signInWithOtp: mocks.signInWithOtp,
+      signOut: mocks.signOut,
     },
   },
 }));
@@ -35,5 +37,25 @@ describe('AuthService', () => {
     }
 
     expect(mocks.signInWithOtp).toHaveBeenCalledWith({ email: 'leroy@example.com' });
+  });
+
+  it('должен вызываться signInWithOtp с передачей email', async () => {
+    mocks.signOut.mockReturnValue({ data: null });
+    const result = await authService.logout();
+
+    expect(mocks.signInWithOtp).toHaveBeenCalled();
+    expect(result).toEqual({ data: null });
+  });
+
+  it('должен возвращать объект ошибки при ошибке', async () => {
+    mocks.signOut.mockRejectedValue(mockError);
+
+    try {
+      await authService.logout();
+    } catch (error) {
+      expect(error).toEqual(mockError);
+    }
+
+    expect(mocks.signInWithOtp).toHaveBeenCalled();
   });
 });

@@ -61,6 +61,6 @@ describe('SearchResult', () => {
       />,
     );
 
-    expect(screen.getByText(/ничего не найдено/i)).toBeInTheDocument();
+    expect(screen.getByText('Ничего не найдено')).toBeInTheDocument();
   });
 });
