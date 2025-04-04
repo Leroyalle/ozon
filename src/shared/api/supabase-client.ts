@@ -5,6 +5,5 @@ import { Database } from '../types/supabase';
 export const supabase = createClient<Database>(API_URL, API_KEY, {
   auth: {
     persistSession: true,
-    autoRefreshToken: true,
   },
 });

@@ -9,8 +9,9 @@ interface Props {
 
 export const ProductInfo: FC<Props> = ({ item, className }) => {
   return (
-    <div className={clsx('', className)} data-testid="productInfo">
-      {item.products.name}
+    <div className={clsx('flex flex-col gap-4', className)} data-testid="productInfo">
+      <h1 className="text-xl font-semibold">{item.products.name}</h1>
+      <div className="text-xl font-bold text-lime-500">{item.price.toLocaleString()} ₽</div>
     </div>
   );
 };
