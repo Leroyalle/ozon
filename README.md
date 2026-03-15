@@ -1,54 +1,152 @@
-# React + TypeScript + Vite
+# 🛒 Ozon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend интернет-магазина.
 
-Currently, two official plugins are available:
+Проект сделан для демонстрации **разных уровней тестирования frontend-приложения**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Используются три типа тестов:
 
-## Expanding the ESLint configuration
+- **unit**
+- **integration**
+- **e2e**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# ⚙️ Стек
+
+**Основное**
+
+- React
+- TypeScript
+- Vite
+
+**State**
+
+- Redux Toolkit
+- RTK Query
+
+**Стили**
+
+- TailwindCSS
+
+**Backend**
+
+- Supabase
+
+**Тестирование**
+
+- Vitest
+- React Testing Library
+- Playwright
+
+---
+
+# 🧱 Архитектура
+
+Проект использует архитектуру **FSD (Feature-Sliced Design)**.
+
+Код разделён на слои:
+
+```
+app
+pages
+widgets
+features
+entities
+shared
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Каждый слой имеет свою область ответственности и может использовать только нижележащие слои.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# 📁 Структура проекта
+
+```
+.
+├── e2e
+├── public
+├── src
+├── tests
+├── index.html
+├── package.json
+├── vite.config.ts
+├── vitest.config.ts
+├── playwright.config.ts
+├── tailwind.config.js
+└── postcss.config.js
+```
+
+---
+
+# 🧪 Тесты
+
+### Unit + Integration
+
+```
+tests/
+```
+
+Тестируется:
+
+- бизнес-логика
+- утилиты
+- компоненты
+
+---
+
+### E2E
+
+```
+e2e/
+```
+
+E2E тесты выполняются через **Playwright** и проверяют пользовательские сценарии.
+
+---
+
+# 🌱 Переменные окружения
+
+Файл:
+
+```
+.env.example
+```
+
+---
+
+# 🚀 Запуск проекта
+
+Установка зависимостей:
+
+```
+npm install
+```
+
+Запуск dev сервера:
+
+```
+npm run dev
+```
+
+Сборка:
+
+```
+npm run build
+```
+
+---
+
+# 🧪 Запуск тестов
+
+Unit + Integration:
+
+```
+npm run test
+```
+
+E2E:
+
+```
+npm run e2e
 ```
